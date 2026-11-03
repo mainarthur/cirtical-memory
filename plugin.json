@@ -1,0 +1,12 @@
+{
+  "name": "obsidian-memory",
+  "displayName": "Obsidian Memory",
+  "version": "1.0.0",
+  "description": "Maintain an Obsidian-compatible Markdown documentation vault and Kanban board alongside software development projects.",
+  "category": "Productivity",
+  "suggestedPrompts": [
+    "Initialize an Obsidian memory vault for this project",
+    "Update the project index and Kanban board with recent changes",
+    "Log my recent prompts and implementation decisions into Obsidian"
+  ]
+}
