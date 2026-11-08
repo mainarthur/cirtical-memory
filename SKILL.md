@@ -1,13 +1,14 @@
 ---
 name: memdoc
-description: Maintain an Obsidian-compatible Markdown documentation and memory vault (memdoc: memory + documentation) alongside a software development project. Use when the user mentions memdoc, memory, documentation vault, tracking prompts and tasks in Obsidian, updating the project index note, or organizing project notes and Kanban boards.
+description: Maintain an Obsidian-compatible Markdown documentation and memory vault (memdoc: memory + documentation) alongside a software development project. Use when the user mentions memdoc, runs the /memdoc slash command, tracks prompts and tasks in Obsidian, updates the project index note, or organizes project notes and Kanban boards. Also triggered by the /memdoc slash command.
 ---
-# Memdoc (Memory + Documentation)
+# Memdoc
 
 Maintain a human-readable reference documentation and project memory vault in a dedicated folder alongside a development project, structured for Obsidian navigation and Kanban task tracking.
 
 ## When to Use
 
+- Triggered via the `/memdoc` chat slash command.
 - Initializing a memdoc documentation vault for a new or existing software project.
 - Logging prompts, implementation decisions, and completed work during development.
 - Updating project architecture, setup guides, or general usage documentation.

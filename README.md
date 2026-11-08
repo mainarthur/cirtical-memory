@@ -1,4 +1,4 @@
-# Memdoc (Memory + Documentation) Skill for Antigravity
+# Memdoc Skill for Antigravity
 
 [![Antigravity Skill](https://img.shields.io/badge/Antigravity-Customization-blue)](https://antigravity.google)
 [![Format](https://img.shields.io/badge/Obsidian-Compatible-purple)](https://obsidian.md)
@@ -71,11 +71,12 @@ git submodule add https://github.com/mainarthur/obsidian-skill.git .agents/skill
 
 ## Triggering the Skill in Antigravity
 
-The agent automatically activates this skill whenever you mention:
-- *"Initialize a memdoc vault for this project"*
-- *"Log this prompt and changes to memdoc"*
-- *"Update the project index and Kanban board"*
-- *"Document this architectural decision in my memdoc vault"*
+- **Chat Slash Command:** Type `/memdoc` directly in the chat to invoke the skill.
+- **Natural Language:** The agent also automatically activates this skill whenever you mention:
+  - *"Initialize a memdoc vault for this project"*
+  - *"Log this prompt and changes to memdoc"*
+  - *"Update the project index and Kanban board"*
+  - *"Document this architectural decision in my memdoc vault"*
 
 You can also run the bundled bootstrap script to initialize a new vault in seconds:
 ```bash
