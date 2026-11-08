@@ -6,7 +6,8 @@
   "logo": "assets/logo.svg",
   "suggestedPrompts": [
     "/memdoc",
-    "Initialize a memdoc vault for this project",
-    "Update the project index and Kanban board with recent changes"
+    "/adr-review",
+    "Review proposed ADR and debate contradictory decisions",
+    "Initialize a memdoc vault for this project"
   ]
 }

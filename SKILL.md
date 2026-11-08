@@ -1,6 +1,6 @@
 ---
 name: memdoc
-description: Maintain an Obsidian-compatible Markdown documentation and memory vault (memdoc: memory + documentation) alongside a software development project. Use when the user mentions memdoc, runs the /memdoc slash command, tracks prompts and tasks in Obsidian, updates the project index note, or organizes project notes and Kanban boards. Also triggered by the /memdoc slash command.
+description: Maintain an Obsidian-compatible Markdown documentation and memory vault (memdoc: memory + documentation) alongside a software development project. Use when the user mentions memdoc, runs the /memdoc slash command, tracks prompts and tasks in Obsidian, updates the project index note, or organizes project notes and Kanban boards. Automatically checks for architectural conflicts during updates and triggers adr-review when contradictions are found. Also triggered by the /memdoc slash command.
 ---
 # Memdoc
 
@@ -105,8 +105,22 @@ For each significant prompt or task, log the entry in `tasks/prompts-log.md` or 
 - **Changes Made:** Files modified, added, or removed.
 - **Outcome / Verification:** What was accomplished and any follow-up work needed.
 
+### 5. Conflict Detection & Auto-Triggering ADR Review
+
+Whenever an update introduces new technical decisions, changes architecture in `docs/`, or logs tasks that alter established technical patterns:
+
+1. **Conflict Check:** Cross-reference the proposed change against existing records in `docs/Decisions.md` (or `docs/decisions/`).
+2. **Auto-Trigger ADR Review:** If the update contradicts, breaks, or silently reverses a previously accepted decision (e.g., swapping databases, altering auth schemes, bypassing established API conventions):
+   - **Immediately pause the memdoc update.**
+   - **Invoke the `adr-review` workflow** to debate the contradiction:
+     1. Present the Socratic challenge highlighting the specific conflicting ADR.
+     2. Generate the Trade-off Matrix comparing old vs. new choices.
+     3. Require explicit justification and formal status transition (`Superseded by [[ADR-xxx]]`) with a migration plan.
+3. **Resume Memdoc Update:** Only apply the architectural documentation and task status changes after the contradiction has been explicitly reconciled and confirmed.
+
 ## Gotchas
 
 - **Orphaned Notes:** Never create a new Markdown file in `docs/` or `tasks/items/` without adding a corresponding `[[Wikilink]]` in `Index.md` (and setting its frontmatter `status` for the Kanban base).
+- **Silent Architectural Drift:** Never silently update `docs/` with architecture or tooling changes that contradict past ADRs. Always auto-trigger `/adr-review` when a conflict is detected.
 - **Mixing Docs and Tasks:** Keep timeless usage guides in `docs/` and chronological prompt/task history in `tasks/`. When a task introduces a permanent feature, update the relevant note in `docs/` as well as updating the task item `status: Done`.
 - **Broken Wikilinks:** Match filenames and Wikilinks exactly, using kebab-case for task items and consistent casing for main documentation notes.

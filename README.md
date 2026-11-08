@@ -13,6 +13,7 @@ An agentic skill and plugin for **Google Antigravity (AGY)** that maintains a hu
 - **Map of Content (`Index.md`):** Keeps an updated central hub linking all architectural notes, setup guides, and task logs.
 - **Visual Kanban Board (`tasks/Kanban-Board.base`):** Configured as an [Obsidian Base](https://help.obsidian.md) with a native Kanban view, grouping cards by `status` (Epic, Backlog, Up next, Doing, Done, Archive) and sorting by priority.
 - **Chronological Prompt & Execution Log (`tasks/prompts-log.md`):** Preserves an audit trail of agent interactions, decisions, and diff summaries.
+- **ADR Merge Review & Contradiction Debate (`/adr-review`):** 3-phase pre-merge review that challenges contradictory decisions with devil's advocate debate, generates a trade-off matrix, and enforces superseding/migration rules.
 - **Wikilinks & Atomic Notes:** Uses `[[Wikilink]]` internal navigation and YAML frontmatter properties for Obsidian Dataview / Bases compatibility.
 - **Automatic Antigravity Discovery:** Works either globally across all Antigravity workspaces or scoped to individual projects.
 
@@ -69,14 +70,23 @@ git submodule add https://github.com/mainarthur/obsidian-skill.git .agents/skill
 
 ---
 
-## Triggering the Skill in Antigravity
+## Triggering Skills in Antigravity
 
-- **Chat Slash Command:** Type `/memdoc` directly in the chat to invoke the skill.
-- **Natural Language:** The agent also automatically activates this skill whenever you mention:
-  - *"Initialize a memdoc vault for this project"*
-  - *"Log this prompt and changes to memdoc"*
-  - *"Update the project index and Kanban board"*
-  - *"Document this architectural decision in my memdoc vault"*
+This plugin provides two complementary skills:
+
+### 1. `/memdoc` — Vault & Task Management
+- **Chat Slash Command:** Type `/memdoc` directly in the chat.
+- **Natural Language:** Activates when you ask to initialize a vault, update the Kanban board, or log prompts and progress.
+- **Architectural Conflict Check:** Automatically checks for contradictions with existing ADRs whenever architectural notes or task decisions are updated, auto-triggering `/adr-review` if a conflict is detected.
+
+### 2. `/adr-review` — ADR Merge Review & Debate
+- **Chat Slash Command:** Type `/adr-review` directly in the chat.
+- **Auto-Triggered:** Automatically launches during `/memdoc` updates when an incoming change contradicts previously accepted ADRs.
+- **Natural Language:** Activates when you propose a new architectural decision, evaluate conflicting trade-offs, or ask to review an ADR against historical choices.
+- **Review Workflow:**
+  1. **Devil's Advocate:** Socratic questioning on why past constraints are no longer binding.
+  2. **Trade-off Matrix:** Side-by-side comparison table of old vs. new decisions across scale, complexity, and risk.
+  3. **Gatekeeping:** Enforces explicit justification, `Superseded by [[ADR-xxx]]` status transition, and a migration/rollback strategy before drafting the merge diff for confirmation.
 
 You can also run the bundled bootstrap script to initialize a new vault in seconds:
 ```bash
