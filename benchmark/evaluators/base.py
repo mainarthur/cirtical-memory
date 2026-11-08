@@ -29,6 +29,7 @@ class ConditionResult:
     scenario_id: str
     dimensions: Dict[str, DimensionScore] = field(default_factory=dict)
     overall_score: float = 0.0
+    token_profile: Optional[Any] = None
 
 
 @dataclass

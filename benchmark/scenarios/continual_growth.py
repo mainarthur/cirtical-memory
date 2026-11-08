@@ -195,3 +195,4 @@ def run_growth_simulation(workspace: Path, with_skills: bool, total_sprints: int
 def run_scenario(workspace: Path, with_skills: bool):
     """Entry point compatible with runner.py's standard scenario interface."""
     return run_growth_simulation(workspace, with_skills, total_sprints=50)
+
