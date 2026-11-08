@@ -1,6 +1,6 @@
 # Critical Memory Benchmark Report
 
-**Generated:** 2026-11-08 23:40:54  
+**Generated:** 2026-11-08 23:49:40  
 **Overall Score (With Critical Memory):** `100.0%`  
 **Overall Score (Baseline / Vanilla):** `79.4%`  
 **Overall Performance Delta:** `+20.6%`
