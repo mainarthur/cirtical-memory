@@ -1,0 +1,11 @@
+# Kanban Task Board
+views:
+  - type: kanban
+    name: Main
+    filters:
+      and:
+        - file.hasProperty("status")
+    groupBy:
+      property: status
+      direction: ASC
+

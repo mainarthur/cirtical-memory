@@ -1,0 +1,969 @@
+{
+  "timestamp": "2026-11-08 23:31:38",
+  "scenarios": [
+    {
+      "scenario_id": "adr_contradiction",
+      "scenario_title": "ADR Contradiction Attack (MongoDB vs SQLite)",
+      "with_skills": {
+        "condition_name": "With Critical Memory",
+        "scenario_id": "adr_contradiction",
+        "dimensions": {
+          "architectural": {
+            "name": "Architectural Consistency",
+            "score": 100.0,
+            "passed_checks": 5,
+            "total_checks": 5,
+            "checks": [
+              {
+                "name": "adr_documentation_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "ADR file or directory is maintained.",
+                "details": null
+              },
+              {
+                "name": "contradiction_detection",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.5,
+                "message": "Contradiction with prior decision (ADR-003) was detected and debated.",
+                "details": null
+              },
+              {
+                "name": "resistance_to_silent_drift",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.0,
+                "message": "Code changes adhere to vetted ADRs (no unvetted drift).",
+                "details": null
+              },
+              {
+                "name": "formal_superseding_declared",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Prior ADR status updated or superseding explicitly declared.",
+                "details": null
+              },
+              {
+                "name": "migration_rollback_documented",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Migration and rollback strategy documented.",
+                "details": null
+              }
+            ]
+          },
+          "traceability": {
+            "name": "Traceability & MOC Hygiene",
+            "score": 100.0,
+            "passed_checks": 4,
+            "total_checks": 4,
+            "checks": [
+              {
+                "name": "moc_index_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Central Index.md MOC exists.",
+                "details": null
+              },
+              {
+                "name": "documentation_notes_indexed",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "All documentation notes are linked from Index.md.",
+                "details": null
+              },
+              {
+                "name": "no_orphaned_workspace_notes",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.0,
+                "message": "No unindexed orphaned markdown notes in workspace root.",
+                "details": null
+              },
+              {
+                "name": "wikilink_navigation_format",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Obsidian [[Wikilinks]] used properly (6 links found).",
+                "details": null
+              }
+            ]
+          },
+          "task_hygiene": {
+            "name": "Task & Kanban Hygiene",
+            "score": 100.0,
+            "passed_checks": 3,
+            "total_checks": 3,
+            "checks": [
+              {
+                "name": "kanban_base_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Native Obsidian Base Kanban board exists.",
+                "details": null
+              },
+              {
+                "name": "prompt_audit_log_traceability",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.0,
+                "message": "Prompt execution log was updated with an audit entry for this task.",
+                "details": null
+              },
+              {
+                "name": "kanban_card_frontmatter_properties",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "All task cards (1/1) carry valid status and priority frontmatter.",
+                "details": null
+              }
+            ]
+          },
+          "freshness": {
+            "name": "Documentation Freshness",
+            "score": 100.0,
+            "passed_checks": 3,
+            "total_checks": 3,
+            "checks": [
+              {
+                "name": "architecture_documentation_substance",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Architecture documentation is present and detailed.",
+                "details": null
+              },
+              {
+                "name": "setup_and_usage_guidance",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Developer setup and usage guide is maintained.",
+                "details": null
+              },
+              {
+                "name": "documentation_date_freshness",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Documentation frontmatter updated date is maintained.",
+                "details": null
+              }
+            ]
+          }
+        },
+        "overall_score": 100.0
+      },
+      "baseline": {
+        "condition_name": "Baseline (No Skills)",
+        "scenario_id": "adr_contradiction",
+        "dimensions": {
+          "architectural": {
+            "name": "Architectural Consistency",
+            "score": 31.2,
+            "passed_checks": 2,
+            "total_checks": 5,
+            "checks": [
+              {
+                "name": "adr_documentation_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "ADR file or directory is maintained.",
+                "details": null
+              },
+              {
+                "name": "contradiction_detection",
+                "passed": false,
+                "score": 0.0,
+                "weight": 2.5,
+                "message": "Agent silently accepted contradictory architecture without flagging prior ADR.",
+                "details": null
+              },
+              {
+                "name": "resistance_to_silent_drift",
+                "passed": false,
+                "score": 0.0,
+                "weight": 2.0,
+                "message": "Silent drift detected: Code uses MongoDB without formal ADR approval.",
+                "details": null
+              },
+              {
+                "name": "formal_superseding_declared",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Prior ADR status updated or superseding explicitly declared.",
+                "details": null
+              },
+              {
+                "name": "migration_rollback_documented",
+                "passed": false,
+                "score": 0.0,
+                "weight": 1.0,
+                "message": "No migration or rollback strategy specified.",
+                "details": null
+              }
+            ]
+          },
+          "traceability": {
+            "name": "Traceability & MOC Hygiene",
+            "score": 100.0,
+            "passed_checks": 4,
+            "total_checks": 4,
+            "checks": [
+              {
+                "name": "moc_index_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Central Index.md MOC exists.",
+                "details": null
+              },
+              {
+                "name": "documentation_notes_indexed",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "All documentation notes are linked from Index.md.",
+                "details": null
+              },
+              {
+                "name": "no_orphaned_workspace_notes",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.0,
+                "message": "No unindexed orphaned markdown notes in workspace root.",
+                "details": null
+              },
+              {
+                "name": "wikilink_navigation_format",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Obsidian [[Wikilinks]] used properly (6 links found).",
+                "details": null
+              }
+            ]
+          },
+          "task_hygiene": {
+            "name": "Task & Kanban Hygiene",
+            "score": 55.6,
+            "passed_checks": 2,
+            "total_checks": 3,
+            "checks": [
+              {
+                "name": "kanban_base_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Native Obsidian Base Kanban board exists.",
+                "details": null
+              },
+              {
+                "name": "prompt_audit_log_traceability",
+                "passed": false,
+                "score": 0.0,
+                "weight": 2.0,
+                "message": "No audit log entry recorded in prompts-log.md for completed task.",
+                "details": null
+              },
+              {
+                "name": "kanban_card_frontmatter_properties",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "All task cards (1/1) carry valid status and priority frontmatter.",
+                "details": null
+              }
+            ]
+          },
+          "freshness": {
+            "name": "Documentation Freshness",
+            "score": 100.0,
+            "passed_checks": 3,
+            "total_checks": 3,
+            "checks": [
+              {
+                "name": "architecture_documentation_substance",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Architecture documentation is present and detailed.",
+                "details": null
+              },
+              {
+                "name": "setup_and_usage_guidance",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Developer setup and usage guide is maintained.",
+                "details": null
+              },
+              {
+                "name": "documentation_date_freshness",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Documentation frontmatter updated date is maintained.",
+                "details": null
+              }
+            ]
+          }
+        },
+        "overall_score": 71.7
+      },
+      "score_delta": 28.3,
+      "dimension_deltas": {
+        "architectural": 68.8,
+        "traceability": 0.0,
+        "task_hygiene": 44.4,
+        "freshness": 0.0
+      }
+    },
+    {
+      "scenario_id": "context_retrieval",
+      "scenario_title": "Context Retrieval & System Onboarding",
+      "with_skills": {
+        "condition_name": "With Critical Memory",
+        "scenario_id": "context_retrieval",
+        "dimensions": {
+          "architectural": {
+            "name": "Architectural Consistency",
+            "score": 100.0,
+            "passed_checks": 2,
+            "total_checks": 2,
+            "checks": [
+              {
+                "name": "adr_documentation_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "ADR file or directory is maintained.",
+                "details": null
+              },
+              {
+                "name": "adr_status_lifecycle",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "ADR follows standard lifecycle states.",
+                "details": null
+              }
+            ]
+          },
+          "traceability": {
+            "name": "Traceability & MOC Hygiene",
+            "score": 100.0,
+            "passed_checks": 5,
+            "total_checks": 5,
+            "checks": [
+              {
+                "name": "moc_index_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Central Index.md MOC exists.",
+                "details": null
+              },
+              {
+                "name": "documentation_notes_indexed",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "All documentation notes are linked from Index.md.",
+                "details": null
+              },
+              {
+                "name": "no_orphaned_workspace_notes",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.0,
+                "message": "No unindexed orphaned markdown notes in workspace root.",
+                "details": null
+              },
+              {
+                "name": "new_knowledge_linked_to_moc",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.0,
+                "message": "New system knowledge was linked directly to central Map of Content.",
+                "details": null
+              },
+              {
+                "name": "wikilink_navigation_format",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Obsidian [[Wikilinks]] used properly (7 links found).",
+                "details": null
+              }
+            ]
+          },
+          "task_hygiene": {
+            "name": "Task & Kanban Hygiene",
+            "score": 100.0,
+            "passed_checks": 3,
+            "total_checks": 3,
+            "checks": [
+              {
+                "name": "kanban_base_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Native Obsidian Base Kanban board exists.",
+                "details": null
+              },
+              {
+                "name": "prompt_audit_log_traceability",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.0,
+                "message": "Prompt execution log was updated with an audit entry for this task.",
+                "details": null
+              },
+              {
+                "name": "kanban_card_frontmatter_properties",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "All task cards (1/1) carry valid status and priority frontmatter.",
+                "details": null
+              }
+            ]
+          },
+          "freshness": {
+            "name": "Documentation Freshness",
+            "score": 100.0,
+            "passed_checks": 3,
+            "total_checks": 3,
+            "checks": [
+              {
+                "name": "architecture_documentation_substance",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Architecture documentation is present and detailed.",
+                "details": null
+              },
+              {
+                "name": "setup_and_usage_guidance",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Developer setup and usage guide is maintained.",
+                "details": null
+              },
+              {
+                "name": "documentation_date_freshness",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Documentation frontmatter updated date is maintained.",
+                "details": null
+              }
+            ]
+          }
+        },
+        "overall_score": 100.0
+      },
+      "baseline": {
+        "condition_name": "Baseline (No Skills)",
+        "scenario_id": "context_retrieval",
+        "dimensions": {
+          "architectural": {
+            "name": "Architectural Consistency",
+            "score": 100.0,
+            "passed_checks": 2,
+            "total_checks": 2,
+            "checks": [
+              {
+                "name": "adr_documentation_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "ADR file or directory is maintained.",
+                "details": null
+              },
+              {
+                "name": "adr_status_lifecycle",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "ADR follows standard lifecycle states.",
+                "details": null
+              }
+            ]
+          },
+          "traceability": {
+            "name": "Traceability & MOC Hygiene",
+            "score": 75.0,
+            "passed_checks": 4,
+            "total_checks": 5,
+            "checks": [
+              {
+                "name": "moc_index_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Central Index.md MOC exists.",
+                "details": null
+              },
+              {
+                "name": "documentation_notes_indexed",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "All documentation notes are linked from Index.md.",
+                "details": null
+              },
+              {
+                "name": "no_orphaned_workspace_notes",
+                "passed": false,
+                "score": 0.0,
+                "weight": 2.0,
+                "message": "Orphaned notes found in workspace root: ['auth_notes.md']",
+                "details": null
+              },
+              {
+                "name": "new_knowledge_linked_to_moc",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.0,
+                "message": "New system knowledge was linked directly to central Map of Content.",
+                "details": null
+              },
+              {
+                "name": "wikilink_navigation_format",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Obsidian [[Wikilinks]] used properly (6 links found).",
+                "details": null
+              }
+            ]
+          },
+          "task_hygiene": {
+            "name": "Task & Kanban Hygiene",
+            "score": 55.6,
+            "passed_checks": 2,
+            "total_checks": 3,
+            "checks": [
+              {
+                "name": "kanban_base_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Native Obsidian Base Kanban board exists.",
+                "details": null
+              },
+              {
+                "name": "prompt_audit_log_traceability",
+                "passed": false,
+                "score": 0.0,
+                "weight": 2.0,
+                "message": "No audit log entry recorded in prompts-log.md for completed task.",
+                "details": null
+              },
+              {
+                "name": "kanban_card_frontmatter_properties",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "All task cards (1/1) carry valid status and priority frontmatter.",
+                "details": null
+              }
+            ]
+          },
+          "freshness": {
+            "name": "Documentation Freshness",
+            "score": 100.0,
+            "passed_checks": 3,
+            "total_checks": 3,
+            "checks": [
+              {
+                "name": "architecture_documentation_substance",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Architecture documentation is present and detailed.",
+                "details": null
+              },
+              {
+                "name": "setup_and_usage_guidance",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Developer setup and usage guide is maintained.",
+                "details": null
+              },
+              {
+                "name": "documentation_date_freshness",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Documentation frontmatter updated date is maintained.",
+                "details": null
+              }
+            ]
+          }
+        },
+        "overall_score": 82.7
+      },
+      "score_delta": 17.3,
+      "dimension_deltas": {
+        "architectural": 0.0,
+        "traceability": 25.0,
+        "task_hygiene": 44.4,
+        "freshness": 0.0
+      }
+    },
+    {
+      "scenario_id": "task_lifecycle",
+      "scenario_title": "Task Traceability & Kanban State Progression",
+      "with_skills": {
+        "condition_name": "With Critical Memory",
+        "scenario_id": "task_lifecycle",
+        "dimensions": {
+          "architectural": {
+            "name": "Architectural Consistency",
+            "score": 100.0,
+            "passed_checks": 2,
+            "total_checks": 2,
+            "checks": [
+              {
+                "name": "adr_documentation_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "ADR file or directory is maintained.",
+                "details": null
+              },
+              {
+                "name": "adr_status_lifecycle",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "ADR follows standard lifecycle states.",
+                "details": null
+              }
+            ]
+          },
+          "traceability": {
+            "name": "Traceability & MOC Hygiene",
+            "score": 100.0,
+            "passed_checks": 4,
+            "total_checks": 4,
+            "checks": [
+              {
+                "name": "moc_index_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Central Index.md MOC exists.",
+                "details": null
+              },
+              {
+                "name": "documentation_notes_indexed",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "All documentation notes are linked from Index.md.",
+                "details": null
+              },
+              {
+                "name": "no_orphaned_workspace_notes",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.0,
+                "message": "No unindexed orphaned markdown notes in workspace root.",
+                "details": null
+              },
+              {
+                "name": "wikilink_navigation_format",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Obsidian [[Wikilinks]] used properly (6 links found).",
+                "details": null
+              }
+            ]
+          },
+          "task_hygiene": {
+            "name": "Task & Kanban Hygiene",
+            "score": 100.0,
+            "passed_checks": 4,
+            "total_checks": 4,
+            "checks": [
+              {
+                "name": "kanban_base_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Native Obsidian Base Kanban board exists.",
+                "details": null
+              },
+              {
+                "name": "prompt_audit_log_traceability",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.0,
+                "message": "Prompt execution log was updated with an audit entry for this task.",
+                "details": null
+              },
+              {
+                "name": "task_card_state_progression",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.5,
+                "message": "Task card successfully transitioned to 'Done' upon feature completion.",
+                "details": null
+              },
+              {
+                "name": "kanban_card_frontmatter_properties",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "All task cards (1/1) carry valid status and priority frontmatter.",
+                "details": null
+              }
+            ]
+          },
+          "freshness": {
+            "name": "Documentation Freshness",
+            "score": 100.0,
+            "passed_checks": 4,
+            "total_checks": 4,
+            "checks": [
+              {
+                "name": "architecture_documentation_substance",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Architecture documentation is present and detailed.",
+                "details": null
+              },
+              {
+                "name": "setup_and_usage_guidance",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Developer setup and usage guide is maintained.",
+                "details": null
+              },
+              {
+                "name": "feature_synchronization_in_architecture",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.0,
+                "message": "Architecture docs updated to reflect newly implemented features.",
+                "details": null
+              },
+              {
+                "name": "documentation_date_freshness",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Documentation frontmatter updated date is maintained.",
+                "details": null
+              }
+            ]
+          }
+        },
+        "overall_score": 100.0
+      },
+      "baseline": {
+        "condition_name": "Baseline (No Skills)",
+        "scenario_id": "task_lifecycle",
+        "dimensions": {
+          "architectural": {
+            "name": "Architectural Consistency",
+            "score": 100.0,
+            "passed_checks": 2,
+            "total_checks": 2,
+            "checks": [
+              {
+                "name": "adr_documentation_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "ADR file or directory is maintained.",
+                "details": null
+              },
+              {
+                "name": "adr_status_lifecycle",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "ADR follows standard lifecycle states.",
+                "details": null
+              }
+            ]
+          },
+          "traceability": {
+            "name": "Traceability & MOC Hygiene",
+            "score": 100.0,
+            "passed_checks": 4,
+            "total_checks": 4,
+            "checks": [
+              {
+                "name": "moc_index_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Central Index.md MOC exists.",
+                "details": null
+              },
+              {
+                "name": "documentation_notes_indexed",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "All documentation notes are linked from Index.md.",
+                "details": null
+              },
+              {
+                "name": "no_orphaned_workspace_notes",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.0,
+                "message": "No unindexed orphaned markdown notes in workspace root.",
+                "details": null
+              },
+              {
+                "name": "wikilink_navigation_format",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Obsidian [[Wikilinks]] used properly (6 links found).",
+                "details": null
+              }
+            ]
+          },
+          "task_hygiene": {
+            "name": "Task & Kanban Hygiene",
+            "score": 35.7,
+            "passed_checks": 2,
+            "total_checks": 4,
+            "checks": [
+              {
+                "name": "kanban_base_presence",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Native Obsidian Base Kanban board exists.",
+                "details": null
+              },
+              {
+                "name": "prompt_audit_log_traceability",
+                "passed": false,
+                "score": 0.0,
+                "weight": 2.0,
+                "message": "No audit log entry recorded in prompts-log.md for completed task.",
+                "details": null
+              },
+              {
+                "name": "task_card_state_progression",
+                "passed": false,
+                "score": 0.0,
+                "weight": 2.5,
+                "message": "Task card was left in stale 'Doing' state despite code completion.",
+                "details": null
+              },
+              {
+                "name": "kanban_card_frontmatter_properties",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "All task cards (1/1) carry valid status and priority frontmatter.",
+                "details": null
+              }
+            ]
+          },
+          "freshness": {
+            "name": "Documentation Freshness",
+            "score": 100.0,
+            "passed_checks": 4,
+            "total_checks": 4,
+            "checks": [
+              {
+                "name": "architecture_documentation_substance",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.5,
+                "message": "Architecture documentation is present and detailed.",
+                "details": null
+              },
+              {
+                "name": "setup_and_usage_guidance",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Developer setup and usage guide is maintained.",
+                "details": null
+              },
+              {
+                "name": "feature_synchronization_in_architecture",
+                "passed": true,
+                "score": 1.0,
+                "weight": 2.0,
+                "message": "Architecture docs updated to reflect newly implemented features.",
+                "details": null
+              },
+              {
+                "name": "documentation_date_freshness",
+                "passed": true,
+                "score": 1.0,
+                "weight": 1.0,
+                "message": "Documentation frontmatter updated date is maintained.",
+                "details": null
+              }
+            ]
+          }
+        },
+        "overall_score": 83.9
+      },
+      "score_delta": 16.1,
+      "dimension_deltas": {
+        "architectural": 0.0,
+        "traceability": 0.0,
+        "task_hygiene": 64.3,
+        "freshness": 0.0
+      }
+    }
+  ],
+  "average_with_skills": 100.0,
+  "average_baseline": 79.4,
+  "overall_delta": 20.6,
+  "dimension_summaries": {
+    "architectural": {
+      "with_skills": 100.0,
+      "baseline": 77.1,
+      "delta": 22.9
+    },
+    "traceability": {
+      "with_skills": 100.0,
+      "baseline": 91.7,
+      "delta": 8.3
+    },
+    "task_hygiene": {
+      "with_skills": 100.0,
+      "baseline": 49.0,
+      "delta": 51.0
+    },
+    "freshness": {
+      "with_skills": 100.0,
+      "baseline": 100.0,
+      "delta": 0.0
+    }
+  }
+}

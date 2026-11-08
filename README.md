@@ -67,6 +67,24 @@ This creates the full directory structure, seed notes, Kanban board, and a root 
 
 ---
 
+## Benchmark Suite (With vs Without Skills)
+
+Critical Memory includes an automated evaluation harness in `benchmark/` to contrast agent performance with versus without Critical Memory skills across 4 dimensions:
+
+```bash
+# Run all benchmark scenarios and generate comparative scorecard:
+./benchmark/run.sh
+```
+
+- **Dimension 1:** Architectural Consistency & ADR Conflict Detection
+- **Dimension 2:** Traceability & Map of Content (MOC) Hygiene
+- **Dimension 3:** Task State Progression & Kanban Hygiene
+- **Dimension 4:** Living Documentation Freshness
+
+Reports are saved to `benchmark/reports/benchmark-report.md` and `results.json`. See [`benchmark/README.md`](benchmark/README.md) for details.
+
+---
+
 ## Setup for Your AI Assistant
 
 Critical Memory works out of the box with any modern coding agent:
