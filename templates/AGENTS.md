@@ -60,3 +60,4 @@ When proposing new architectural choices, introducing major libraries, or alteri
    - **Pause and flag the contradiction** to the user.
    - **Present a Trade-off Matrix:** Compare the existing decision with the proposed direction across performance, complexity, migration cost, and operational risks.
    - **Enforce Superseding:** If accepted, update the previous ADR's status to `Superseded by [[ADR-xxx]]`, and record the new ADR with `supersedes: [[ADR-xxx]]` and a concrete migration/rollback plan.
+

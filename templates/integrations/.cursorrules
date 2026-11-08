@@ -6,3 +6,4 @@ This repository uses Critical Memory for living documentation and ADR management
 - **Index:** Always update `docs/obsidian/Index.md` with wikilinks when notes are created or modified.
 - **Tasks:** Maintain task items in `tasks/items/` and log execution in `tasks/prompts-log.md`.
 - **Decisions:** Check `docs/Decisions.md` before altering technical foundations. If a proposed change conflicts with existing decisions, highlight the contradiction, present a trade-off matrix, and record supersession.
+
