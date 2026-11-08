@@ -1,0 +1,261 @@
+{
+  "timestamp": "2026-11-08 23:58:23",
+  "cells": {
+    "gemini_baseline": {
+      "name": "Gemini Baseline (No Skills)",
+      "persona": "gemini",
+      "with_skills": false,
+      "average_score": 73.9,
+      "average_tokens": 1800,
+      "scenarios": [
+        {
+          "scenario_id": "adr_contradiction",
+          "overall_score": 63.4,
+          "dimensions": {
+            "architectural": 31.2,
+            "traceability": 66.7,
+            "task_hygiene": 55.6,
+            "freshness": 100.0
+          },
+          "tokens": {
+            "signal_tokens": 396,
+            "noise_tokens": 1404,
+            "total_tokens": 1800,
+            "snr_percent": 22.0,
+            "pollution_percent": 78.0,
+            "efficiency_roi": 35.2
+          }
+        },
+        {
+          "scenario_id": "context_retrieval",
+          "overall_score": 82.7,
+          "dimensions": {
+            "architectural": 100.0,
+            "traceability": 75.0,
+            "task_hygiene": 55.6,
+            "freshness": 100.0
+          },
+          "tokens": {
+            "signal_tokens": 396,
+            "noise_tokens": 1404,
+            "total_tokens": 1800,
+            "snr_percent": 22.0,
+            "pollution_percent": 78.0,
+            "efficiency_roi": 45.9
+          }
+        },
+        {
+          "scenario_id": "task_lifecycle",
+          "overall_score": 75.6,
+          "dimensions": {
+            "architectural": 100.0,
+            "traceability": 66.7,
+            "task_hygiene": 35.7,
+            "freshness": 100.0
+          },
+          "tokens": {
+            "signal_tokens": 396,
+            "noise_tokens": 1404,
+            "total_tokens": 1800,
+            "snr_percent": 22.0,
+            "pollution_percent": 78.0,
+            "efficiency_roi": 42.0
+          }
+        }
+      ]
+    },
+    "gemini_skills": {
+      "name": "Gemini With Critical Memory",
+      "persona": "gemini",
+      "with_skills": true,
+      "average_score": 100.0,
+      "average_tokens": 293,
+      "scenarios": [
+        {
+          "scenario_id": "adr_contradiction",
+          "overall_score": 100.0,
+          "dimensions": {
+            "architectural": 100.0,
+            "traceability": 100.0,
+            "task_hygiene": 100.0,
+            "freshness": 100.0
+          },
+          "tokens": {
+            "signal_tokens": 476,
+            "noise_tokens": 57,
+            "total_tokens": 533,
+            "snr_percent": 89.3,
+            "pollution_percent": 10.7,
+            "efficiency_roi": 187.6
+          }
+        },
+        {
+          "scenario_id": "context_retrieval",
+          "overall_score": 100.0,
+          "dimensions": {
+            "architectural": 100.0,
+            "traceability": 100.0,
+            "task_hygiene": 100.0,
+            "freshness": 100.0
+          },
+          "tokens": {
+            "signal_tokens": 156,
+            "noise_tokens": 18,
+            "total_tokens": 174,
+            "snr_percent": 89.7,
+            "pollution_percent": 10.3,
+            "efficiency_roi": 574.7
+          }
+        },
+        {
+          "scenario_id": "task_lifecycle",
+          "overall_score": 100.0,
+          "dimensions": {
+            "architectural": 100.0,
+            "traceability": 100.0,
+            "task_hygiene": 100.0,
+            "freshness": 100.0
+          },
+          "tokens": {
+            "signal_tokens": 156,
+            "noise_tokens": 18,
+            "total_tokens": 174,
+            "snr_percent": 89.7,
+            "pollution_percent": 10.3,
+            "efficiency_roi": 574.7
+          }
+        }
+      ]
+    },
+    "claude_baseline": {
+      "name": "Claude Persona Baseline (No Skills)",
+      "persona": "claude",
+      "with_skills": false,
+      "average_score": 73.9,
+      "average_tokens": 1800,
+      "scenarios": [
+        {
+          "scenario_id": "adr_contradiction",
+          "overall_score": 63.4,
+          "dimensions": {
+            "architectural": 31.2,
+            "traceability": 66.7,
+            "task_hygiene": 55.6,
+            "freshness": 100.0
+          },
+          "tokens": {
+            "signal_tokens": 396,
+            "noise_tokens": 1404,
+            "total_tokens": 1800,
+            "snr_percent": 22.0,
+            "pollution_percent": 78.0,
+            "efficiency_roi": 35.2
+          }
+        },
+        {
+          "scenario_id": "context_retrieval",
+          "overall_score": 82.7,
+          "dimensions": {
+            "architectural": 100.0,
+            "traceability": 75.0,
+            "task_hygiene": 55.6,
+            "freshness": 100.0
+          },
+          "tokens": {
+            "signal_tokens": 396,
+            "noise_tokens": 1404,
+            "total_tokens": 1800,
+            "snr_percent": 22.0,
+            "pollution_percent": 78.0,
+            "efficiency_roi": 45.9
+          }
+        },
+        {
+          "scenario_id": "task_lifecycle",
+          "overall_score": 75.6,
+          "dimensions": {
+            "architectural": 100.0,
+            "traceability": 66.7,
+            "task_hygiene": 35.7,
+            "freshness": 100.0
+          },
+          "tokens": {
+            "signal_tokens": 396,
+            "noise_tokens": 1404,
+            "total_tokens": 1800,
+            "snr_percent": 22.0,
+            "pollution_percent": 78.0,
+            "efficiency_roi": 42.0
+          }
+        }
+      ]
+    },
+    "claude_skills": {
+      "name": "Claude Persona With Critical Memory",
+      "persona": "claude",
+      "with_skills": true,
+      "average_score": 92.4,
+      "average_tokens": 293,
+      "scenarios": [
+        {
+          "scenario_id": "adr_contradiction",
+          "overall_score": 91.7,
+          "dimensions": {
+            "architectural": 100.0,
+            "traceability": 66.7,
+            "task_hygiene": 100.0,
+            "freshness": 100.0
+          },
+          "tokens": {
+            "signal_tokens": 476,
+            "noise_tokens": 57,
+            "total_tokens": 533,
+            "snr_percent": 89.3,
+            "pollution_percent": 10.7,
+            "efficiency_roi": 172.0
+          }
+        },
+        {
+          "scenario_id": "context_retrieval",
+          "overall_score": 93.8,
+          "dimensions": {
+            "architectural": 100.0,
+            "traceability": 75.0,
+            "task_hygiene": 100.0,
+            "freshness": 100.0
+          },
+          "tokens": {
+            "signal_tokens": 156,
+            "noise_tokens": 18,
+            "total_tokens": 174,
+            "snr_percent": 89.7,
+            "pollution_percent": 10.3,
+            "efficiency_roi": 539.1
+          }
+        },
+        {
+          "scenario_id": "task_lifecycle",
+          "overall_score": 91.7,
+          "dimensions": {
+            "architectural": 100.0,
+            "traceability": 66.7,
+            "task_hygiene": 100.0,
+            "freshness": 100.0
+          },
+          "tokens": {
+            "signal_tokens": 156,
+            "noise_tokens": 18,
+            "total_tokens": 174,
+            "snr_percent": 89.7,
+            "pollution_percent": 10.3,
+            "efficiency_roi": 527.0
+          }
+        }
+      ]
+    }
+  },
+  "comparison_matrix": {
+    "gemini_delta": 26.1,
+    "claude_delta": 18.5
+  }
+}

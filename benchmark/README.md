@@ -38,23 +38,37 @@ Every scenario is graded across 4 quantitative dimensions (0–100%):
 ./benchmark/run.sh --scenario continual_growth --sprints 50
 ```
 
-### 3. Run a Specific Scenario
+### 3. Run Live Subagent 2x2 Matrix (Gemini & Claude Persona)
+```bash
+# Run full 2x2 evaluation across all standard scenarios:
+./benchmark/run.sh --live-agent
+
+# Run specific model persona (e.g., Gemini or Claude):
+./benchmark/run.sh --live-agent --models gemini
+./benchmark/run.sh --live-agent --models claude
+
+# Scaffold isolated sandboxes and manifest without executing (dry run):
+./benchmark/run.sh --live-agent --dry-run
+```
+
+### 4. Run a Specific Scenario
 ```bash
 ./benchmark/run.sh --scenario adr_contradiction
 ./benchmark/run.sh --scenario context_retrieval
 ./benchmark/run.sh --scenario task_lifecycle
 ```
 
-### 3. Custom Output Directory and Formats
+### 5. Custom Output Directory and Formats
 ```bash
 ./benchmark/run.sh --output-dir custom_reports/ --format both
 ```
 
 Outputs generated:
 - `benchmark/reports/benchmark-report.md`: GitHub-flavored Markdown report with executive summary, comparative scorecard, and check highlights.
+- `benchmark/reports/live-matrix-report.md`: 2x2 comparative evaluation scorecard across Gemini and Claude persona modes.
 - `benchmark/reports/continual-growth-report.md`: 50-sprint longitudinal scalability analysis and degradation curves.
 - `benchmark/reports/context-pollution-analysis.md`: Detailed Context Pollution (Usage vs. Win), Signal-to-Noise Ratio (SNR), and token economics report.
-- `benchmark/reports/results.json` & `growth_results.json`: Machine-readable structured benchmark results.
+- `benchmark/reports/results.json`, `growth_results.json` & `live_matrix_results.json`: Machine-readable structured benchmark results.
 
 ---
 

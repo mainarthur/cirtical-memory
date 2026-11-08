@@ -1,0 +1,17 @@
+"""Subagents module for Live Agent Benchmark harness."""
+
+from benchmark.subagents.prompts import (
+    AGENT_CONFIGS,
+    GEMINI_BASELINE_SYSTEM_PROMPT,
+    GEMINI_SKILLS_SYSTEM_PROMPT,
+    CLAUDE_BASELINE_SYSTEM_PROMPT,
+    CLAUDE_SKILLS_SYSTEM_PROMPT,
+)
+
+__all__ = [
+    "AGENT_CONFIGS",
+    "GEMINI_BASELINE_SYSTEM_PROMPT",
+    "GEMINI_SKILLS_SYSTEM_PROMPT",
+    "CLAUDE_BASELINE_SYSTEM_PROMPT",
+    "CLAUDE_SKILLS_SYSTEM_PROMPT",
+]
