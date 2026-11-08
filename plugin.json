@@ -1,8 +1,8 @@
 {
-  "name": "memdoc",
-  "displayName": "Memdoc",
+  "name": "critical-memory",
+  "displayName": "Critical Memory",
   "version": "1.0.0",
-  "description": "Maintain an Obsidian-compatible Markdown documentation and memory vault (memdoc: memory + documentation) alongside software development projects.",
+  "description": "Maintain a Markdown documentation and memory vault with ADR contradiction debate and Kanban boards alongside software projects.",
   "logo": "assets/logo.svg",
   "suggestedPrompts": [
     "/memdoc",

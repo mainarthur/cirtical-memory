@@ -45,6 +45,12 @@ render_template "${TEMPLATES_DIR}/docs/ADR-template.md" "${TARGET_DIR}/docs/ADR-
 render_template "${TEMPLATES_DIR}/tasks/Kanban-Board.base" "${TARGET_DIR}/tasks/Kanban-Board.base"
 render_template "${TEMPLATES_DIR}/tasks/prompts-log.md" "${TARGET_DIR}/tasks/prompts-log.md"
 render_template "${TEMPLATES_DIR}/tasks/items/task-template.md" "${TARGET_DIR}/tasks/items/task-template.md"
+render_template "${TEMPLATES_DIR}/AGENTS.md" "${TARGET_DIR}/AGENTS.md"
 
-echo "Memdoc vault initialized successfully at: ${TARGET_DIR}"
+if [ ! -f "AGENTS.md" ] && [ "${TARGET_DIR}" != "." ]; then
+  cp "${TARGET_DIR}/AGENTS.md" "AGENTS.md"
+  echo "  [created] Root AGENTS.md (Universal GenAI agent instructions)"
+fi
+
+echo "Critical Memory vault initialized successfully at: ${TARGET_DIR}"
 
