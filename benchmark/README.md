@@ -22,17 +22,23 @@ Every scenario is graded across 4 quantitative dimensions (0–100%):
 | `adr_contradiction` | **ADR Contradiction Attack** | Agent is tasked to introduce MongoDB into an application whose `ADR-003` mandated SQLite. Measures whether contradiction is detected and formally superseded vs silently drifted. |
 | `context_retrieval` | **Context Retrieval & Onboarding** | Agent is tasked to query and expand system authentication architecture. Measures whether knowledge is centralized in `Index.md` vs left as an unindexed orphan note. |
 | `task_lifecycle` | **Task State Progression** | Agent completes an in-progress feature. Measures whether task card frontmatter is progressed (`status: Done`), audit logged, and synced with architecture docs. |
+| `continual_growth` | **Continual Growth (High-Load)** | Longitudinal multi-sprint simulation (50 cycles, ~200 tasks, 12 conflict injections) evaluating compounding architectural drift, context decay curves, and task hygiene over time. |
 
 ---
 
 ## Running the Benchmark
 
-### 1. Run All Scenarios (Default)
+### 1. Run All Standard Scenarios (Default)
 ```bash
 ./benchmark/run.sh
 ```
 
-### 2. Run a Specific Scenario
+### 2. Run Continual Growth High-Load Stress Test (50 Sprints)
+```bash
+./benchmark/run.sh --scenario continual_growth --sprints 50
+```
+
+### 3. Run a Specific Scenario
 ```bash
 ./benchmark/run.sh --scenario adr_contradiction
 ./benchmark/run.sh --scenario context_retrieval

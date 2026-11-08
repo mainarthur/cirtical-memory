@@ -1,0 +1,1028 @@
+{
+  "with_skills": {
+    "condition_name": "With Critical Memory",
+    "total_sprints": 50,
+    "total_tasks": 200,
+    "total_adrs": 15,
+    "snapshots": [
+      {
+        "sprint": 1,
+        "tasks_created": 4,
+        "tasks_completed": 4,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 2,
+        "tasks_created": 8,
+        "tasks_completed": 8,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 3,
+        "tasks_created": 12,
+        "tasks_completed": 12,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 4,
+        "tasks_created": 16,
+        "tasks_completed": 16,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 5,
+        "tasks_created": 20,
+        "tasks_completed": 20,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 6,
+        "tasks_created": 24,
+        "tasks_completed": 24,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 7,
+        "tasks_created": 28,
+        "tasks_completed": 28,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 8,
+        "tasks_created": 32,
+        "tasks_completed": 32,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 9,
+        "tasks_created": 36,
+        "tasks_completed": 36,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 10,
+        "tasks_created": 40,
+        "tasks_completed": 40,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 11,
+        "tasks_created": 44,
+        "tasks_completed": 44,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 12,
+        "tasks_created": 48,
+        "tasks_completed": 48,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 13,
+        "tasks_created": 52,
+        "tasks_completed": 52,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 14,
+        "tasks_created": 56,
+        "tasks_completed": 56,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 15,
+        "tasks_created": 60,
+        "tasks_completed": 60,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 16,
+        "tasks_created": 64,
+        "tasks_completed": 64,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 17,
+        "tasks_created": 68,
+        "tasks_completed": 68,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 18,
+        "tasks_created": 72,
+        "tasks_completed": 72,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 19,
+        "tasks_created": 76,
+        "tasks_completed": 76,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 20,
+        "tasks_created": 80,
+        "tasks_completed": 80,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 21,
+        "tasks_created": 84,
+        "tasks_completed": 84,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 22,
+        "tasks_created": 88,
+        "tasks_completed": 88,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 23,
+        "tasks_created": 92,
+        "tasks_completed": 92,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 24,
+        "tasks_created": 96,
+        "tasks_completed": 96,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 25,
+        "tasks_created": 100,
+        "tasks_completed": 100,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 26,
+        "tasks_created": 104,
+        "tasks_completed": 104,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 27,
+        "tasks_created": 108,
+        "tasks_completed": 108,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 28,
+        "tasks_created": 112,
+        "tasks_completed": 112,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 29,
+        "tasks_created": 116,
+        "tasks_completed": 116,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 30,
+        "tasks_created": 120,
+        "tasks_completed": 120,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 31,
+        "tasks_created": 124,
+        "tasks_completed": 124,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 32,
+        "tasks_created": 128,
+        "tasks_completed": 128,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 33,
+        "tasks_created": 132,
+        "tasks_completed": 132,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 34,
+        "tasks_created": 136,
+        "tasks_completed": 136,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 35,
+        "tasks_created": 140,
+        "tasks_completed": 140,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 36,
+        "tasks_created": 144,
+        "tasks_completed": 144,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 37,
+        "tasks_created": 148,
+        "tasks_completed": 148,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 38,
+        "tasks_created": 152,
+        "tasks_completed": 152,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 39,
+        "tasks_created": 156,
+        "tasks_completed": 156,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 40,
+        "tasks_created": 160,
+        "tasks_completed": 160,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 41,
+        "tasks_created": 164,
+        "tasks_completed": 164,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 42,
+        "tasks_created": 168,
+        "tasks_completed": 168,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 43,
+        "tasks_created": 172,
+        "tasks_completed": 172,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 44,
+        "tasks_created": 176,
+        "tasks_completed": 176,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 45,
+        "tasks_created": 180,
+        "tasks_completed": 180,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 46,
+        "tasks_created": 184,
+        "tasks_completed": 184,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 47,
+        "tasks_created": 188,
+        "tasks_completed": 188,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 48,
+        "tasks_created": 192,
+        "tasks_completed": 192,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 49,
+        "tasks_created": 196,
+        "tasks_completed": 196,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      },
+      {
+        "sprint": 50,
+        "tasks_created": 200,
+        "tasks_completed": 200,
+        "stale_tasks": 0,
+        "orphaned_notes": 0,
+        "drift_events": 0,
+        "recall_accuracy": 100.0,
+        "overall_health": 100.0
+      }
+    ],
+    "final_drift_rate": 0.0,
+    "final_recall_accuracy": 100.0,
+    "final_orphan_ratio": 0.0,
+    "final_stale_task_ratio": 0.0,
+    "final_health_score": 100.0
+  },
+  "baseline": {
+    "condition_name": "Baseline (No Skills)",
+    "total_sprints": 50,
+    "total_tasks": 200,
+    "total_adrs": 3,
+    "snapshots": [
+      {
+        "sprint": 1,
+        "tasks_created": 4,
+        "tasks_completed": 2,
+        "stale_tasks": 2,
+        "orphaned_notes": 1,
+        "drift_events": 0,
+        "recall_accuracy": 89.5,
+        "overall_health": 87.6
+      },
+      {
+        "sprint": 2,
+        "tasks_created": 8,
+        "tasks_completed": 4,
+        "stale_tasks": 4,
+        "orphaned_notes": 1,
+        "drift_events": 0,
+        "recall_accuracy": 89.5,
+        "overall_health": 87.6
+      },
+      {
+        "sprint": 3,
+        "tasks_created": 12,
+        "tasks_completed": 6,
+        "stale_tasks": 6,
+        "orphaned_notes": 1,
+        "drift_events": 0,
+        "recall_accuracy": 88.0,
+        "overall_health": 87.1
+      },
+      {
+        "sprint": 4,
+        "tasks_created": 16,
+        "tasks_completed": 8,
+        "stale_tasks": 8,
+        "orphaned_notes": 1,
+        "drift_events": 1,
+        "recall_accuracy": 88.0,
+        "overall_health": 84.3
+      },
+      {
+        "sprint": 5,
+        "tasks_created": 20,
+        "tasks_completed": 10,
+        "stale_tasks": 10,
+        "orphaned_notes": 1,
+        "drift_events": 1,
+        "recall_accuracy": 88.0,
+        "overall_health": 84.3
+      },
+      {
+        "sprint": 6,
+        "tasks_created": 24,
+        "tasks_completed": 12,
+        "stale_tasks": 12,
+        "orphaned_notes": 2,
+        "drift_events": 1,
+        "recall_accuracy": 86.5,
+        "overall_health": 82.6
+      },
+      {
+        "sprint": 7,
+        "tasks_created": 28,
+        "tasks_completed": 14,
+        "stale_tasks": 14,
+        "orphaned_notes": 2,
+        "drift_events": 1,
+        "recall_accuracy": 86.5,
+        "overall_health": 82.6
+      },
+      {
+        "sprint": 8,
+        "tasks_created": 32,
+        "tasks_completed": 16,
+        "stale_tasks": 16,
+        "orphaned_notes": 2,
+        "drift_events": 2,
+        "recall_accuracy": 86.5,
+        "overall_health": 79.8
+      },
+      {
+        "sprint": 9,
+        "tasks_created": 36,
+        "tasks_completed": 18,
+        "stale_tasks": 18,
+        "orphaned_notes": 3,
+        "drift_events": 2,
+        "recall_accuracy": 85.0,
+        "overall_health": 78.0
+      },
+      {
+        "sprint": 10,
+        "tasks_created": 40,
+        "tasks_completed": 20,
+        "stale_tasks": 20,
+        "orphaned_notes": 3,
+        "drift_events": 2,
+        "recall_accuracy": 85.0,
+        "overall_health": 78.0
+      },
+      {
+        "sprint": 11,
+        "tasks_created": 44,
+        "tasks_completed": 22,
+        "stale_tasks": 22,
+        "orphaned_notes": 3,
+        "drift_events": 2,
+        "recall_accuracy": 85.0,
+        "overall_health": 78.0
+      },
+      {
+        "sprint": 12,
+        "tasks_created": 48,
+        "tasks_completed": 24,
+        "stale_tasks": 24,
+        "orphaned_notes": 4,
+        "drift_events": 3,
+        "recall_accuracy": 83.5,
+        "overall_health": 73.5
+      },
+      {
+        "sprint": 13,
+        "tasks_created": 52,
+        "tasks_completed": 26,
+        "stale_tasks": 26,
+        "orphaned_notes": 4,
+        "drift_events": 3,
+        "recall_accuracy": 83.5,
+        "overall_health": 73.5
+      },
+      {
+        "sprint": 14,
+        "tasks_created": 56,
+        "tasks_completed": 28,
+        "stale_tasks": 28,
+        "orphaned_notes": 4,
+        "drift_events": 3,
+        "recall_accuracy": 83.5,
+        "overall_health": 73.5
+      },
+      {
+        "sprint": 15,
+        "tasks_created": 60,
+        "tasks_completed": 30,
+        "stale_tasks": 30,
+        "orphaned_notes": 5,
+        "drift_events": 3,
+        "recall_accuracy": 82.0,
+        "overall_health": 71.8
+      },
+      {
+        "sprint": 16,
+        "tasks_created": 64,
+        "tasks_completed": 32,
+        "stale_tasks": 32,
+        "orphaned_notes": 5,
+        "drift_events": 4,
+        "recall_accuracy": 82.0,
+        "overall_health": 69.0
+      },
+      {
+        "sprint": 17,
+        "tasks_created": 68,
+        "tasks_completed": 34,
+        "stale_tasks": 34,
+        "orphaned_notes": 5,
+        "drift_events": 4,
+        "recall_accuracy": 82.0,
+        "overall_health": 69.0
+      },
+      {
+        "sprint": 18,
+        "tasks_created": 72,
+        "tasks_completed": 36,
+        "stale_tasks": 36,
+        "orphaned_notes": 6,
+        "drift_events": 4,
+        "recall_accuracy": 80.5,
+        "overall_health": 67.3
+      },
+      {
+        "sprint": 19,
+        "tasks_created": 76,
+        "tasks_completed": 38,
+        "stale_tasks": 38,
+        "orphaned_notes": 6,
+        "drift_events": 4,
+        "recall_accuracy": 80.5,
+        "overall_health": 67.3
+      },
+      {
+        "sprint": 20,
+        "tasks_created": 80,
+        "tasks_completed": 40,
+        "stale_tasks": 40,
+        "orphaned_notes": 6,
+        "drift_events": 5,
+        "recall_accuracy": 80.5,
+        "overall_health": 64.5
+      },
+      {
+        "sprint": 21,
+        "tasks_created": 84,
+        "tasks_completed": 42,
+        "stale_tasks": 42,
+        "orphaned_notes": 7,
+        "drift_events": 5,
+        "recall_accuracy": 79.0,
+        "overall_health": 62.8
+      },
+      {
+        "sprint": 22,
+        "tasks_created": 88,
+        "tasks_completed": 44,
+        "stale_tasks": 44,
+        "orphaned_notes": 7,
+        "drift_events": 5,
+        "recall_accuracy": 79.0,
+        "overall_health": 62.8
+      },
+      {
+        "sprint": 23,
+        "tasks_created": 92,
+        "tasks_completed": 46,
+        "stale_tasks": 46,
+        "orphaned_notes": 7,
+        "drift_events": 5,
+        "recall_accuracy": 79.0,
+        "overall_health": 62.8
+      },
+      {
+        "sprint": 24,
+        "tasks_created": 96,
+        "tasks_completed": 48,
+        "stale_tasks": 48,
+        "orphaned_notes": 8,
+        "drift_events": 6,
+        "recall_accuracy": 77.5,
+        "overall_health": 58.2
+      },
+      {
+        "sprint": 25,
+        "tasks_created": 100,
+        "tasks_completed": 50,
+        "stale_tasks": 50,
+        "orphaned_notes": 8,
+        "drift_events": 6,
+        "recall_accuracy": 77.5,
+        "overall_health": 58.2
+      },
+      {
+        "sprint": 26,
+        "tasks_created": 104,
+        "tasks_completed": 52,
+        "stale_tasks": 52,
+        "orphaned_notes": 8,
+        "drift_events": 6,
+        "recall_accuracy": 77.5,
+        "overall_health": 58.2
+      },
+      {
+        "sprint": 27,
+        "tasks_created": 108,
+        "tasks_completed": 54,
+        "stale_tasks": 54,
+        "orphaned_notes": 9,
+        "drift_events": 6,
+        "recall_accuracy": 76.0,
+        "overall_health": 56.5
+      },
+      {
+        "sprint": 28,
+        "tasks_created": 112,
+        "tasks_completed": 56,
+        "stale_tasks": 56,
+        "orphaned_notes": 9,
+        "drift_events": 7,
+        "recall_accuracy": 76.0,
+        "overall_health": 53.7
+      },
+      {
+        "sprint": 29,
+        "tasks_created": 116,
+        "tasks_completed": 58,
+        "stale_tasks": 58,
+        "orphaned_notes": 9,
+        "drift_events": 7,
+        "recall_accuracy": 76.0,
+        "overall_health": 53.7
+      },
+      {
+        "sprint": 30,
+        "tasks_created": 120,
+        "tasks_completed": 60,
+        "stale_tasks": 60,
+        "orphaned_notes": 10,
+        "drift_events": 7,
+        "recall_accuracy": 74.5,
+        "overall_health": 52.0
+      },
+      {
+        "sprint": 31,
+        "tasks_created": 124,
+        "tasks_completed": 62,
+        "stale_tasks": 62,
+        "orphaned_notes": 10,
+        "drift_events": 7,
+        "recall_accuracy": 74.5,
+        "overall_health": 52.0
+      },
+      {
+        "sprint": 32,
+        "tasks_created": 128,
+        "tasks_completed": 64,
+        "stale_tasks": 64,
+        "orphaned_notes": 10,
+        "drift_events": 8,
+        "recall_accuracy": 74.5,
+        "overall_health": 49.2
+      },
+      {
+        "sprint": 33,
+        "tasks_created": 132,
+        "tasks_completed": 66,
+        "stale_tasks": 66,
+        "orphaned_notes": 11,
+        "drift_events": 8,
+        "recall_accuracy": 73.0,
+        "overall_health": 47.4
+      },
+      {
+        "sprint": 34,
+        "tasks_created": 136,
+        "tasks_completed": 68,
+        "stale_tasks": 68,
+        "orphaned_notes": 11,
+        "drift_events": 8,
+        "recall_accuracy": 73.0,
+        "overall_health": 47.4
+      },
+      {
+        "sprint": 35,
+        "tasks_created": 140,
+        "tasks_completed": 70,
+        "stale_tasks": 70,
+        "orphaned_notes": 11,
+        "drift_events": 8,
+        "recall_accuracy": 73.0,
+        "overall_health": 47.4
+      },
+      {
+        "sprint": 36,
+        "tasks_created": 144,
+        "tasks_completed": 72,
+        "stale_tasks": 72,
+        "orphaned_notes": 12,
+        "drift_events": 9,
+        "recall_accuracy": 71.5,
+        "overall_health": 43.8
+      },
+      {
+        "sprint": 37,
+        "tasks_created": 148,
+        "tasks_completed": 74,
+        "stale_tasks": 74,
+        "orphaned_notes": 12,
+        "drift_events": 9,
+        "recall_accuracy": 71.5,
+        "overall_health": 43.8
+      },
+      {
+        "sprint": 38,
+        "tasks_created": 152,
+        "tasks_completed": 76,
+        "stale_tasks": 76,
+        "orphaned_notes": 12,
+        "drift_events": 9,
+        "recall_accuracy": 71.5,
+        "overall_health": 43.8
+      },
+      {
+        "sprint": 39,
+        "tasks_created": 156,
+        "tasks_completed": 78,
+        "stale_tasks": 78,
+        "orphaned_notes": 13,
+        "drift_events": 9,
+        "recall_accuracy": 70.0,
+        "overall_health": 43.3
+      },
+      {
+        "sprint": 40,
+        "tasks_created": 160,
+        "tasks_completed": 80,
+        "stale_tasks": 80,
+        "orphaned_notes": 13,
+        "drift_events": 10,
+        "recall_accuracy": 70.0,
+        "overall_health": 40.5
+      },
+      {
+        "sprint": 41,
+        "tasks_created": 164,
+        "tasks_completed": 82,
+        "stale_tasks": 82,
+        "orphaned_notes": 13,
+        "drift_events": 10,
+        "recall_accuracy": 70.0,
+        "overall_health": 40.5
+      },
+      {
+        "sprint": 42,
+        "tasks_created": 168,
+        "tasks_completed": 84,
+        "stale_tasks": 84,
+        "orphaned_notes": 14,
+        "drift_events": 10,
+        "recall_accuracy": 68.5,
+        "overall_health": 40.0
+      },
+      {
+        "sprint": 43,
+        "tasks_created": 172,
+        "tasks_completed": 86,
+        "stale_tasks": 86,
+        "orphaned_notes": 14,
+        "drift_events": 10,
+        "recall_accuracy": 68.5,
+        "overall_health": 40.0
+      },
+      {
+        "sprint": 44,
+        "tasks_created": 176,
+        "tasks_completed": 88,
+        "stale_tasks": 88,
+        "orphaned_notes": 14,
+        "drift_events": 11,
+        "recall_accuracy": 68.5,
+        "overall_health": 37.2
+      },
+      {
+        "sprint": 45,
+        "tasks_created": 180,
+        "tasks_completed": 90,
+        "stale_tasks": 90,
+        "orphaned_notes": 15,
+        "drift_events": 11,
+        "recall_accuracy": 67.0,
+        "overall_health": 36.6
+      },
+      {
+        "sprint": 46,
+        "tasks_created": 184,
+        "tasks_completed": 92,
+        "stale_tasks": 92,
+        "orphaned_notes": 15,
+        "drift_events": 11,
+        "recall_accuracy": 67.0,
+        "overall_health": 36.6
+      },
+      {
+        "sprint": 47,
+        "tasks_created": 188,
+        "tasks_completed": 94,
+        "stale_tasks": 94,
+        "orphaned_notes": 15,
+        "drift_events": 11,
+        "recall_accuracy": 67.0,
+        "overall_health": 36.6
+      },
+      {
+        "sprint": 48,
+        "tasks_created": 192,
+        "tasks_completed": 96,
+        "stale_tasks": 96,
+        "orphaned_notes": 16,
+        "drift_events": 12,
+        "recall_accuracy": 65.5,
+        "overall_health": 33.3
+      },
+      {
+        "sprint": 49,
+        "tasks_created": 196,
+        "tasks_completed": 98,
+        "stale_tasks": 98,
+        "orphaned_notes": 16,
+        "drift_events": 12,
+        "recall_accuracy": 65.5,
+        "overall_health": 33.3
+      },
+      {
+        "sprint": 50,
+        "tasks_created": 200,
+        "tasks_completed": 100,
+        "stale_tasks": 100,
+        "orphaned_notes": 16,
+        "drift_events": 12,
+        "recall_accuracy": 65.5,
+        "overall_health": 33.3
+      }
+    ],
+    "final_drift_rate": 100.0,
+    "final_recall_accuracy": 65.5,
+    "final_orphan_ratio": 8.0,
+    "final_stale_task_ratio": 50.0,
+    "final_health_score": 33.3
+  }
+}
