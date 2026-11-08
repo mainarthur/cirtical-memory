@@ -1,6 +1,6 @@
 # Critical Memory Benchmark Report
 
-**Generated:** 2026-11-08 23:36:52  
+**Generated:** 2026-11-08 23:40:54  
 **Overall Score (With Critical Memory):** `100.0%`  
 **Overall Score (Baseline / Vanilla):** `79.4%`  
 **Overall Performance Delta:** `+20.6%`
@@ -17,6 +17,14 @@
 | **Freshness** | 100.0% | **100.0%** | `0.0%` |
 | **AVERAGE COMPOSITE** | 79.4% | **100.0%** | `+20.6%` |
 
+### Context Pollution & Token ROI Summary
+
+| Scenario | Baseline Tokens (Noise %) | Critical Memory Tokens (Noise %) | Token Reduction | SNR Gain |
+| :--- | :---: | :---: | :---: | :---: |
+| `adr_contradiction` | 1800 toks (`78.0%` noise) | **524 toks** (`10.7%` noise) | `-71%` tokens | `+67.3%` SNR |
+| `context_retrieval` | 1800 toks (`78.0%` noise) | **174 toks** (`10.3%` noise) | `-90%` tokens | `+67.7%` SNR |
+| `task_lifecycle` | 1800 toks (`78.0%` noise) | **165 toks** (`10.3%` noise) | `-91%` tokens | `+67.7%` SNR |
+
 ---
 
 ## Scenario Breakdown
@@ -24,6 +32,7 @@
 ### ADR Contradiction Attack (MongoDB vs SQLite) (`adr_contradiction`)
 
 - **Overall Score:** Baseline: `71.7%` ➔ With Skills: **`100.0%`** (`+28.3%`)
+- **Token Usage vs. Win:** Ingested **524 tokens** (Signal: 89.3%, Pollution: 10.7%) achieving **190.8 score pts/kTok** vs Baseline **1800 tokens** (39.8 pts/kTok).
 
 | Dimension | Baseline | With Skills | Delta |
 | :--- | :---: | :---: | :---: |
@@ -53,6 +62,7 @@
 ### Context Retrieval & System Onboarding (`context_retrieval`)
 
 - **Overall Score:** Baseline: `82.7%` ➔ With Skills: **`100.0%`** (`+17.3%`)
+- **Token Usage vs. Win:** Ingested **174 tokens** (Signal: 89.7%, Pollution: 10.3%) achieving **574.7 score pts/kTok** vs Baseline **1800 tokens** (45.9 pts/kTok).
 
 | Dimension | Baseline | With Skills | Delta |
 | :--- | :---: | :---: | :---: |
@@ -80,6 +90,7 @@
 ### Task Traceability & Kanban State Progression (`task_lifecycle`)
 
 - **Overall Score:** Baseline: `83.9%` ➔ With Skills: **`100.0%`** (`+16.1%`)
+- **Token Usage vs. Win:** Ingested **165 tokens** (Signal: 89.7%, Pollution: 10.3%) achieving **606.1 score pts/kTok** vs Baseline **1800 tokens** (46.6 pts/kTok).
 
 | Dimension | Baseline | With Skills | Delta |
 | :--- | :---: | :---: | :---: |

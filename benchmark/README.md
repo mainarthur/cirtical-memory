@@ -52,7 +52,9 @@ Every scenario is graded across 4 quantitative dimensions (0–100%):
 
 Outputs generated:
 - `benchmark/reports/benchmark-report.md`: GitHub-flavored Markdown report with executive summary, comparative scorecard, and check highlights.
-- `benchmark/reports/results.json`: Machine-readable structured benchmark results.
+- `benchmark/reports/continual-growth-report.md`: 50-sprint longitudinal scalability analysis and degradation curves.
+- `benchmark/reports/context-pollution-analysis.md`: Detailed Context Pollution (Usage vs. Win), Signal-to-Noise Ratio (SNR), and token economics report.
+- `benchmark/reports/results.json` & `growth_results.json`: Machine-readable structured benchmark results.
 
 ---
 
