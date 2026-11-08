@@ -1,6 +1,6 @@
 # Live Subagent Benchmark: 2x2 Evaluation Matrix
 
-**Generated:** 2026-11-08 23:58:23  
+**Generated:** 2026-11-09 00:01:59  
 **Harness Engine:** Antigravity Subagent Orchestrator  
 **Models Evaluated:** Gemini (Native Antigravity) & Claude Code Persona
 

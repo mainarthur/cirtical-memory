@@ -16,7 +16,7 @@ IS_LIVE=false
 ARGS=()
 
 for arg in "$@"; do
-  if [ "$arg" == "--live-agent" ]; then
+  if [ "$arg" == "--live-agent" ] || [ "$arg" == "--matrix" ] || [ "$arg" == "--live" ]; then
     IS_LIVE=true
   else
     ARGS+=("$arg")
