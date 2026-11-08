@@ -111,12 +111,16 @@ To run the benchmark suite locally:
 # Run all standard scenarios:
 ./benchmark/run.sh
 
+# Run live subagent 2x2 matrix (Gemini & Claude personas):
+./benchmark/run.sh --matrix
+
 # Run 50-sprint longitudinal stress test:
 ./benchmark/run.sh --scenario continual_growth --sprints 50
 ```
 
 Detailed reports:
 - [Full Benchmark Report](benchmark/reports/benchmark-report.md)
+- [Live Subagent 2x2 Matrix Report](benchmark/reports/live-matrix-report.md)
 - [Continual Growth Scalability Report](benchmark/reports/continual-growth-report.md)
 - [Context Pollution & Token ROI Analysis](benchmark/reports/context-pollution-analysis.md)
 
