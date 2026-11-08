@@ -12,3 +12,4 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 export PYTHONPATH="${REPO_ROOT}:${PYTHONPATH:-}"
 
 python3 -m benchmark.runner "$@"
+

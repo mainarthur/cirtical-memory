@@ -18,3 +18,4 @@ def get_scenario(scenario_id: str):
 
 def list_scenarios() -> List[str]:
     return list(SCENARIOS.keys())
+
