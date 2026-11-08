@@ -52,7 +52,7 @@ def evaluate_traceability(workspace: Path, scenario_id: str) -> DimensionScore:
     # Check if files like auth_notes.md or unindexed markdown notes exist outside vault
     orphaned_repo_md = [
         f.name for f in workspace.glob("*.md")
-        if f.name.lower() != "readme.md" and f.name != "AGENTS.md"
+        if f.name.lower() != "readme.md" and f.name not in ("AGENTS.md", "CLAUDE.md")
     ]
     has_no_orphans = len(orphaned_repo_md) == 0
     checks.append(CheckResult(

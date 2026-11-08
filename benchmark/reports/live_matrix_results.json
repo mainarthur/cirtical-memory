@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-09 00:01:59",
+  "timestamp": "2026-11-09 00:02:56",
   "cells": {
     "gemini_baseline": {
       "name": "Gemini Baseline (No Skills)",
@@ -194,15 +194,15 @@
       "name": "Claude Persona With Critical Memory",
       "persona": "claude",
       "with_skills": true,
-      "average_score": 92.4,
+      "average_score": 100.0,
       "average_tokens": 293,
       "scenarios": [
         {
           "scenario_id": "adr_contradiction",
-          "overall_score": 91.7,
+          "overall_score": 100.0,
           "dimensions": {
             "architectural": 100.0,
-            "traceability": 66.7,
+            "traceability": 100.0,
             "task_hygiene": 100.0,
             "freshness": 100.0
           },
@@ -212,15 +212,15 @@
             "total_tokens": 533,
             "snr_percent": 89.3,
             "pollution_percent": 10.7,
-            "efficiency_roi": 172.0
+            "efficiency_roi": 187.6
           }
         },
         {
           "scenario_id": "context_retrieval",
-          "overall_score": 93.8,
+          "overall_score": 100.0,
           "dimensions": {
             "architectural": 100.0,
-            "traceability": 75.0,
+            "traceability": 100.0,
             "task_hygiene": 100.0,
             "freshness": 100.0
           },
@@ -230,15 +230,15 @@
             "total_tokens": 174,
             "snr_percent": 89.7,
             "pollution_percent": 10.3,
-            "efficiency_roi": 539.1
+            "efficiency_roi": 574.7
           }
         },
         {
           "scenario_id": "task_lifecycle",
-          "overall_score": 91.7,
+          "overall_score": 100.0,
           "dimensions": {
             "architectural": 100.0,
-            "traceability": 66.7,
+            "traceability": 100.0,
             "task_hygiene": 100.0,
             "freshness": 100.0
           },
@@ -248,7 +248,7 @@
             "total_tokens": 174,
             "snr_percent": 89.7,
             "pollution_percent": 10.3,
-            "efficiency_roi": 527.0
+            "efficiency_roi": 574.7
           }
         }
       ]
@@ -256,6 +256,6 @@
   },
   "comparison_matrix": {
     "gemini_delta": 26.1,
-    "claude_delta": 18.5
+    "claude_delta": 26.1
   }
 }
