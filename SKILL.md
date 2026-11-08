@@ -1,14 +1,14 @@
 ---
-name: obsidian-memory
-description: Maintain an Obsidian-compatible Markdown documentation vault alongside a software development project. Use when the user mentions Obsidian memory, project documentation vault, tracking prompts and tasks in Obsidian, updating the project index note, or organizing project notes and Kanban boards.
+name: memdoc
+description: Maintain an Obsidian-compatible Markdown documentation and memory vault (memdoc: memory + documentation) alongside a software development project. Use when the user mentions memdoc, memory, documentation vault, tracking prompts and tasks in Obsidian, updating the project index note, or organizing project notes and Kanban boards.
 ---
-# Obsidian Memory
+# Memdoc (Memory + Documentation)
 
-Maintain a human-readable reference documentation vault in a dedicated folder alongside a development project, structured for Obsidian navigation and Kanban task tracking.
+Maintain a human-readable reference documentation and project memory vault in a dedicated folder alongside a development project, structured for Obsidian navigation and Kanban task tracking.
 
 ## When to Use
 
-- Initializing a documentation vault for a new or existing software project.
+- Initializing a memdoc documentation vault for a new or existing software project.
 - Logging prompts, implementation decisions, and completed work during development.
 - Updating project architecture, setup guides, or general usage documentation.
 - Managing development tasks using an Obsidian Kanban board workflow.
@@ -16,10 +16,10 @@ Maintain a human-readable reference documentation vault in a dedicated folder al
 
 ## Vault Directory Structure
 
-Keep all documentation inside a dedicated root folder (default to `docs/obsidian/` or `.obsidian-memory/` unless specified by the user):
+Keep all documentation inside a dedicated root folder (default to `docs/obsidian/` or `.memdoc/` unless specified by the user):
 
 ```text
-obsidian-memory/
+memdoc/
 ├── Index.md
 ├── docs/
 │   ├── Architecture.md
@@ -57,7 +57,7 @@ Always update `Index.md` whenever a new note is created or renamed. Group links 
 tags: [index, moc]
 updated: YYYY-MM-DD
 ---
-# Project Memory Index
+# Project Memdoc Index
 
 ## General & Usage Documentation
 - [[docs/Setup-and-Usage|Setup and Usage]]

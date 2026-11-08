@@ -9,7 +9,7 @@ Chronological audit log of significant AI agent prompts, user requests, and deve
 ---
 
 ## [{{DATE}}] Initial Vault Setup
-- **Prompt:** Initialize project documentation and Obsidian memory vault.
+- **Prompt:** Initialize project documentation and memdoc vault.
 - **Actions:** Scaffolding base structure and initial files.
 - **Outcome:** Vault ready for ongoing tracking.
 

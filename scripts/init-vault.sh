@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# init-vault.sh: Bootstrap an Obsidian memory vault in a project directory.
+# init-vault.sh: Bootstrap a memdoc (memory + documentation) vault in a project directory.
 # Usage: ./init-vault.sh [TARGET_DIR] [PROJECT_NAME]
 # Default TARGET_DIR: ./docs/obsidian
 # Default PROJECT_NAME: Current directory basename
@@ -16,7 +16,7 @@ CURRENT_DIR_NAME="$(basename "$(pwd)")"
 PROJECT_NAME="${2:-$CURRENT_DIR_NAME}"
 TODAY="$(date +%Y-%m-%d)"
 
-echo "Initializing Obsidian Memory Vault..."
+echo "Initializing Memdoc Vault..."
 echo "  Target: ${TARGET_DIR}"
 echo "  Project: ${PROJECT_NAME}"
 echo "  Date: ${TODAY}"
@@ -45,5 +45,5 @@ render_template "${TEMPLATES_DIR}/tasks/Kanban-Board.base" "${TARGET_DIR}/tasks/
 render_template "${TEMPLATES_DIR}/tasks/prompts-log.md" "${TARGET_DIR}/tasks/prompts-log.md"
 render_template "${TEMPLATES_DIR}/tasks/items/task-template.md" "${TARGET_DIR}/tasks/items/task-template.md"
 
-echo "Vault initialized successfully at: ${TARGET_DIR}"
+echo "Memdoc vault initialized successfully at: ${TARGET_DIR}"
 

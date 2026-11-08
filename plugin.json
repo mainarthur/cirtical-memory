@@ -1,12 +1,12 @@
 {
-  "name": "obsidian-memory",
-  "displayName": "Obsidian Memory",
+  "name": "memdoc",
+  "displayName": "Memdoc (Memory + Documentation)",
   "version": "1.0.0",
-  "description": "Maintain an Obsidian-compatible Markdown documentation vault and Kanban board alongside software development projects.",
+  "description": "Maintain an Obsidian-compatible Markdown documentation and memory vault (memdoc) alongside software development projects.",
   "logo": "assets/logo.svg",
   "suggestedPrompts": [
-    "Initialize an Obsidian memory vault for this project",
+    "Initialize a memdoc vault for this project",
     "Update the project index and Kanban board with recent changes",
-    "Log my recent prompts and implementation decisions into Obsidian"
+    "Log my recent prompts and implementation decisions into memdoc"
   ]
 }

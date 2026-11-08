@@ -1,10 +1,10 @@
-# Obsidian Memory Skill for Antigravity
+# Memdoc (Memory + Documentation) Skill for Antigravity
 
 [![Antigravity Skill](https://img.shields.io/badge/Antigravity-Customization-blue)](https://antigravity.google)
 [![Format](https://img.shields.io/badge/Obsidian-Compatible-purple)](https://obsidian.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-An agentic skill and plugin for **Google Antigravity (AGY)** that maintains a human-readable, bi-directionally linked Markdown documentation vault alongside your software projects. Structured for seamless browsing in [Obsidian](https://obsidian.md) and task tracking via Obsidian Kanban boards.
+An agentic skill and plugin for **Google Antigravity (AGY)** that maintains a human-readable, bi-directionally linked Markdown documentation and project memory vault (**memdoc** = memory + documentation) alongside your software projects. Structured for seamless browsing in [Obsidian](https://obsidian.md) and task tracking via Obsidian Kanban boards.
 
 ---
 
@@ -20,7 +20,7 @@ An agentic skill and plugin for **Google Antigravity (AGY)** that maintains a hu
 
 ## Vault Directory Layout
 
-By default, the vault is maintained in `docs/obsidian/` or `.obsidian-memory/`:
+By default, the vault is maintained in `docs/obsidian/` or `.memdoc/`:
 
 ```text
 docs/obsidian/
@@ -42,15 +42,15 @@ docs/obsidian/
 
 ### 1. Global Installation (All Projects)
 
-This repository is already configured as a global Antigravity plugin under `~/.gemini/config/plugins/obsidian-memory/`.
+This repository is configured as a global Antigravity plugin under `~/.gemini/config/plugins/memdoc/`.
 
 To verify or install on any machine:
 ```bash
 # Symlink or clone into your global Antigravity plugins directory:
-ln -s /path/to/obsidian-skill ~/.gemini/config/plugins/obsidian-memory
+ln -s /path/to/obsidian-skill ~/.gemini/config/plugins/memdoc
 ```
 
-Antigravity automatically discovers the plugin and loads the `obsidian-memory` skill across every project you open.
+Antigravity automatically discovers the plugin and loads the `memdoc` skill across every project you open.
 
 ### 2. Workspace Installation (Project-Specific)
 
@@ -58,13 +58,13 @@ To vendor or check the skill into a specific project repository:
 
 ```bash
 # In your target project root:
-mkdir -p .agents/skills/obsidian-memory
-cp /path/to/obsidian-skill/SKILL.md .agents/skills/obsidian-memory/
+mkdir -p .agents/skills/memdoc
+cp /path/to/obsidian-skill/SKILL.md .agents/skills/memdoc/
 ```
 
 Or add as a Git submodule:
 ```bash
-git submodule add https://github.com/mainarthur/obsidian-skill.git .agents/skills/obsidian-memory
+git submodule add https://github.com/mainarthur/obsidian-skill.git .agents/skills/memdoc
 ```
 
 ---
@@ -72,10 +72,10 @@ git submodule add https://github.com/mainarthur/obsidian-skill.git .agents/skill
 ## Triggering the Skill in Antigravity
 
 The agent automatically activates this skill whenever you mention:
-- *"Initialize an Obsidian memory vault for this project"*
-- *"Log this prompt and changes to Obsidian"*
+- *"Initialize a memdoc vault for this project"*
+- *"Log this prompt and changes to memdoc"*
 - *"Update the project index and Kanban board"*
-- *"Document this architectural decision in my Obsidian vault"*
+- *"Document this architectural decision in my memdoc vault"*
 
 You can also run the bundled bootstrap script to initialize a new vault in seconds:
 ```bash
@@ -96,4 +96,3 @@ When opening the documentation directory as an Obsidian vault:
 ## License
 
 MIT
-

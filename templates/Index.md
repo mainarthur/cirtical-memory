@@ -2,9 +2,9 @@
 tags: [index, moc]
 updated: {{DATE}}
 ---
-# {{PROJECT_NAME}} Memory Index
+# {{PROJECT_NAME}} Memdoc Index
 
-Welcome to the project documentation and memory vault. This index acts as the central Map of Content (MOC), keeping all architectural documentation, technical decisions, and active/historical development tasks interconnected.
+Welcome to the project documentation and memory vault (memdoc). This index acts as the central Map of Content (MOC), keeping all architectural documentation, technical decisions, and active/historical development tasks interconnected.
 
 ## General & Usage Documentation
 - [[docs/Setup-and-Usage|Setup and Usage Guide]]
