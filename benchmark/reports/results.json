@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-09 00:01:41",
+  "timestamp": "2026-11-09 09:02:21",
   "scenarios": [
     {
       "scenario_id": "adr_contradiction",
@@ -35,7 +35,7 @@
                 "passed": true,
                 "score": 1.0,
                 "weight": 2.0,
-                "message": "Code changes adhere to vetted ADRs (no unvetted drift).",
+                "message": "Code changes adhere to vetted ADRs (safe gatekeeping or formal superseding).",
                 "details": null
               },
               {
@@ -43,7 +43,7 @@
                 "passed": true,
                 "score": 1.0,
                 "weight": 1.5,
-                "message": "Prior ADR status updated or superseding explicitly declared.",
+                "message": "ADR-004 formally recorded with Proposed/Accepted status and ADR-003 linkage.",
                 "details": null
               },
               {
@@ -51,7 +51,7 @@
                 "passed": true,
                 "score": 1.0,
                 "weight": 1.0,
-                "message": "Migration and rollback strategy documented.",
+                "message": "Migration/rollback strategy or safe SQLite retention documented.",
                 "details": null
               }
             ]
@@ -154,8 +154,8 @@
                 "name": "documentation_date_freshness",
                 "passed": true,
                 "score": 1.0,
-                "weight": 1.0,
-                "message": "Documentation frontmatter updated date is maintained.",
+                "weight": 1.5,
+                "message": "Documentation frontmatter 'updated' date was bumped on modification.",
                 "details": null
               }
             ]
@@ -163,12 +163,14 @@
         },
         "overall_score": 100.0,
         "token_profile": {
-          "signal_tokens": 468,
-          "noise_tokens": 56,
-          "total_tokens": 524,
-          "snr_percent": 89.3,
-          "pollution_percent": 10.7,
-          "efficiency_roi": 190.8
+          "signal_tokens": 761,
+          "noise_tokens": 60,
+          "total_tokens": 1709,
+          "snr_percent": 92.7,
+          "pollution_percent": 7.3,
+          "efficiency_roi": 58.5,
+          "instruction_overhead_tokens": 888,
+          "source": "static_discovery"
         }
       },
       "baseline": {
@@ -177,8 +179,8 @@
         "dimensions": {
           "architectural": {
             "name": "Architectural Consistency",
-            "score": 31.2,
-            "passed_checks": 2,
+            "score": 12.5,
+            "passed_checks": 1,
             "total_checks": 5,
             "checks": [
               {
@@ -202,15 +204,15 @@
                 "passed": false,
                 "score": 0.0,
                 "weight": 2.0,
-                "message": "Silent drift detected: Code uses MongoDB without formal ADR approval.",
+                "message": "Silent drift detected: Code modified or left unvetted without ADR-004 gatekeeping.",
                 "details": null
               },
               {
                 "name": "formal_superseding_declared",
-                "passed": true,
-                "score": 1.0,
+                "passed": false,
+                "score": 0.0,
                 "weight": 1.5,
-                "message": "Prior ADR status updated or superseding explicitly declared.",
+                "message": "No formal ADR-004 status or superseding relationship recorded.",
                 "details": null
               },
               {
@@ -218,7 +220,7 @@
                 "passed": false,
                 "score": 0.0,
                 "weight": 1.0,
-                "message": "No migration or rollback strategy specified.",
+                "message": "No migration or rollback strategy specified for ADR-004.",
                 "details": null
               }
             ]
@@ -297,8 +299,8 @@
           },
           "freshness": {
             "name": "Documentation Freshness",
-            "score": 100.0,
-            "passed_checks": 3,
+            "score": 62.5,
+            "passed_checks": 2,
             "total_checks": 3,
             "checks": [
               {
@@ -319,31 +321,33 @@
               },
               {
                 "name": "documentation_date_freshness",
-                "passed": true,
-                "score": 1.0,
-                "weight": 1.0,
-                "message": "Documentation frontmatter updated date is maintained.",
+                "passed": false,
+                "score": 0.0,
+                "weight": 1.5,
+                "message": "Documentation frontmatter dates left stale at seed baseline (2026-11-03).",
                 "details": null
               }
             ]
           }
         },
-        "overall_score": 71.7,
+        "overall_score": 57.6,
         "token_profile": {
-          "signal_tokens": 396,
-          "noise_tokens": 1404,
-          "total_tokens": 1800,
-          "snr_percent": 22.0,
-          "pollution_percent": 78.0,
-          "efficiency_roi": 39.8
+          "signal_tokens": 610,
+          "noise_tokens": 1570,
+          "total_tokens": 2180,
+          "snr_percent": 28.0,
+          "pollution_percent": 72.0,
+          "efficiency_roi": 26.4,
+          "instruction_overhead_tokens": 0,
+          "source": "static_discovery"
         }
       },
-      "score_delta": 28.3,
+      "score_delta": 42.4,
       "dimension_deltas": {
-        "architectural": 68.8,
+        "architectural": 87.5,
         "traceability": 0.0,
         "task_hygiene": 44.4,
-        "freshness": 0.0
+        "freshness": 37.5
       }
     },
     {
@@ -483,8 +487,8 @@
                 "name": "documentation_date_freshness",
                 "passed": true,
                 "score": 1.0,
-                "weight": 1.0,
-                "message": "Documentation frontmatter updated date is maintained.",
+                "weight": 1.5,
+                "message": "Documentation frontmatter 'updated' date was bumped on modification.",
                 "details": null
               }
             ]
@@ -492,12 +496,14 @@
         },
         "overall_score": 100.0,
         "token_profile": {
-          "signal_tokens": 156,
-          "noise_tokens": 18,
-          "total_tokens": 174,
-          "snr_percent": 89.7,
-          "pollution_percent": 10.3,
-          "efficiency_roi": 574.7
+          "signal_tokens": 260,
+          "noise_tokens": 20,
+          "total_tokens": 1168,
+          "snr_percent": 92.9,
+          "pollution_percent": 7.1,
+          "efficiency_roi": 85.6,
+          "instruction_overhead_tokens": 888,
+          "source": "static_discovery"
         }
       },
       "baseline": {
@@ -610,8 +616,8 @@
           },
           "freshness": {
             "name": "Documentation Freshness",
-            "score": 100.0,
-            "passed_checks": 3,
+            "score": 62.5,
+            "passed_checks": 2,
             "total_checks": 3,
             "checks": [
               {
@@ -632,31 +638,33 @@
               },
               {
                 "name": "documentation_date_freshness",
-                "passed": true,
-                "score": 1.0,
-                "weight": 1.0,
-                "message": "Documentation frontmatter updated date is maintained.",
+                "passed": false,
+                "score": 0.0,
+                "weight": 1.5,
+                "message": "Documentation frontmatter dates left stale at seed baseline (2026-11-03).",
                 "details": null
               }
             ]
           }
         },
-        "overall_score": 82.7,
+        "overall_score": 73.3,
         "token_profile": {
-          "signal_tokens": 396,
-          "noise_tokens": 1404,
-          "total_tokens": 1800,
-          "snr_percent": 22.0,
-          "pollution_percent": 78.0,
-          "efficiency_roi": 45.9
+          "signal_tokens": 595,
+          "noise_tokens": 1531,
+          "total_tokens": 2126,
+          "snr_percent": 28.0,
+          "pollution_percent": 72.0,
+          "efficiency_roi": 34.5,
+          "instruction_overhead_tokens": 0,
+          "source": "static_discovery"
         }
       },
-      "score_delta": 17.3,
+      "score_delta": 26.7,
       "dimension_deltas": {
         "architectural": 0.0,
         "traceability": 25.0,
         "task_hygiene": 44.4,
-        "freshness": 0.0
+        "freshness": 37.5
       }
     },
     {
@@ -804,8 +812,8 @@
                 "name": "documentation_date_freshness",
                 "passed": true,
                 "score": 1.0,
-                "weight": 1.0,
-                "message": "Documentation frontmatter updated date is maintained.",
+                "weight": 1.5,
+                "message": "Documentation frontmatter 'updated' date was bumped on modification.",
                 "details": null
               }
             ]
@@ -813,12 +821,14 @@
         },
         "overall_score": 100.0,
         "token_profile": {
-          "signal_tokens": 148,
-          "noise_tokens": 17,
-          "total_tokens": 165,
-          "snr_percent": 89.7,
-          "pollution_percent": 10.3,
-          "efficiency_roi": 606.1
+          "signal_tokens": 420,
+          "noise_tokens": 33,
+          "total_tokens": 1341,
+          "snr_percent": 92.7,
+          "pollution_percent": 7.3,
+          "efficiency_roi": 74.6,
+          "instruction_overhead_tokens": 888,
+          "source": "static_discovery"
         }
       },
       "baseline": {
@@ -931,8 +941,8 @@
           },
           "freshness": {
             "name": "Documentation Freshness",
-            "score": 100.0,
-            "passed_checks": 4,
+            "score": 41.7,
+            "passed_checks": 2,
             "total_checks": 4,
             "checks": [
               {
@@ -953,50 +963,52 @@
               },
               {
                 "name": "feature_synchronization_in_architecture",
-                "passed": true,
-                "score": 1.0,
+                "passed": false,
+                "score": 0.0,
                 "weight": 2.0,
-                "message": "Architecture docs updated to reflect newly implemented features.",
+                "message": "Architecture docs left stale without newly added feature details.",
                 "details": null
               },
               {
                 "name": "documentation_date_freshness",
-                "passed": true,
-                "score": 1.0,
-                "weight": 1.0,
-                "message": "Documentation frontmatter updated date is maintained.",
+                "passed": false,
+                "score": 0.0,
+                "weight": 1.5,
+                "message": "Documentation frontmatter dates left stale at seed baseline (2026-11-03).",
                 "details": null
               }
             ]
           }
         },
-        "overall_score": 83.9,
+        "overall_score": 69.3,
         "token_profile": {
-          "signal_tokens": 396,
-          "noise_tokens": 1404,
-          "total_tokens": 1800,
-          "snr_percent": 22.0,
-          "pollution_percent": 78.0,
-          "efficiency_roi": 46.6
+          "signal_tokens": 607,
+          "noise_tokens": 1564,
+          "total_tokens": 2171,
+          "snr_percent": 28.0,
+          "pollution_percent": 72.0,
+          "efficiency_roi": 31.9,
+          "instruction_overhead_tokens": 0,
+          "source": "static_discovery"
         }
       },
-      "score_delta": 16.1,
+      "score_delta": 30.7,
       "dimension_deltas": {
         "architectural": 0.0,
         "traceability": 0.0,
         "task_hygiene": 64.3,
-        "freshness": 0.0
+        "freshness": 58.3
       }
     }
   ],
   "average_with_skills": 100.0,
-  "average_baseline": 79.4,
-  "overall_delta": 20.6,
+  "average_baseline": 66.7,
+  "overall_delta": 33.3,
   "dimension_summaries": {
     "architectural": {
       "with_skills": 100.0,
-      "baseline": 77.1,
-      "delta": 22.9
+      "baseline": 70.8,
+      "delta": 29.2
     },
     "traceability": {
       "with_skills": 100.0,
@@ -1010,8 +1022,8 @@
     },
     "freshness": {
       "with_skills": 100.0,
-      "baseline": 100.0,
-      "delta": 0.0
+      "baseline": 55.6,
+      "delta": 44.4
     }
   }
 }

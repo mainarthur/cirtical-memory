@@ -1,6 +1,6 @@
 ---
 tags: [docs, adr, decisions]
-updated: 2026-11-08
+updated: 2026-11-03
 ---
 # Architectural & Technical Decisions (ADR Log)
 
@@ -27,7 +27,7 @@ A chronological record of significant architectural, technical, and tool choices
 ---
 
 ## ADR-003: Adopt SQLite for Zero-Overhead Embedded Storage
-- **Date:** 2026-11-08
+- **Date:** 2026-11-03
 - **Status:** Accepted (supersedes [[ADR-002]])
 - **Context:** PostgreSQL added unnecessary server daemon, port, and credential overhead for test sandboxes and local development.
 - **Decision:** Migrate primary storage to SQLite using Python standard library `sqlite3`.

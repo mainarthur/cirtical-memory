@@ -20,15 +20,19 @@ Maintain a human-readable reference documentation and project memory vault in a 
 Keep all documentation inside a dedicated root folder (default to `docs/obsidian/` or `.memdoc/` unless specified by the user):
 
 ```text
-memdoc/
+docs/obsidian/
 ├── Index.md
 ├── docs/
 │   ├── Architecture.md
 │   ├── Setup-and-Usage.md
-│   └── Decisions.md
+│   ├── Decisions.md              # Compact 1-line-per-ADR registry table (O(1) lookup)
+│   ├── ADR-template.md
+│   └── decisions/                # Atomic ADR shards (ADR-xxx-slug.md)
+│       └── ADR-001-initial-architecture.md
 └── tasks/
     ├── Kanban-Board.base
-    ├── prompts-log.md
+    ├── prompts-log.md            # Rolling window log (max 15 recent entries)
+    ├── archive/                  # Rotated historical prompt logs (YYYY-MM-prompts.md)
     └── items/
         └── YYYY-MM-DD-task-slug.md
 ```
@@ -63,7 +67,10 @@ updated: YYYY-MM-DD
 ## General & Usage Documentation
 - [[docs/Setup-and-Usage|Setup and Usage]]
 - [[docs/Architecture|Architecture Overview]]
-- [[docs/Decisions|Technical Decisions]]
+- [[docs/Decisions|Technical Decisions Registry]]
+
+## Architecture Decision Records (ADRs)
+- [[docs/decisions/ADR-001-initial-architecture|ADR-001: Initial Architecture]]
 
 ## Task Management & Prompts
 - [[tasks/Kanban-Board|Kanban Task Board]]
@@ -73,7 +80,7 @@ updated: YYYY-MM-DD
 - [[tasks/items/2026-11-03-example-task|Example Task]]
 ```
 
-### 4. Track Tasks and Prompts in Kanban Flow
+### 4. Track Tasks and Prompts in Kanban Flow (With Rolling Log Window)
 
 Maintain `tasks/Kanban-Board.base` using the native Obsidian Base Kanban view, where cards are driven by task frontmatter (`status`, `priority`, `epic`).
 
@@ -99,7 +106,7 @@ Task notes in `tasks/items/` automatically appear in the board based on their YA
 
 When generating a task note, always populate these fields so that cards are automatically grouped into their column, sorted with high-priority items at the top, and filterable across views (`Main`, `Active Sprint`, `All Tasks`).
 
-For each significant prompt or task, log the entry in `tasks/prompts-log.md` or create a dedicated task note in `tasks/items/` containing:
+For each significant prompt or task, log the entry in `tasks/prompts-log.md` (keeping at most **15 recent entries** and rotating older entries to `tasks/archive/YYYY-MM-prompts.md`) or create a dedicated task note in `tasks/items/` containing:
 
 - **Prompt Summary:** The core user request or goal.
 - **Changes Made:** Files modified, added, or removed.
@@ -109,18 +116,27 @@ For each significant prompt or task, log the entry in `tasks/prompts-log.md` or 
 
 Whenever an update introduces new technical decisions, changes architecture in `docs/`, or logs tasks that alter established technical patterns:
 
-1. **Conflict Check:** Cross-reference the proposed change against existing records in `docs/Decisions.md` (or `docs/decisions/`).
+1. **Conflict Check:** Cross-reference the proposed change against the registry in `docs/Decisions.md` and atomic notes in `docs/decisions/`.
 2. **Auto-Trigger ADR Review:** If the update contradicts, breaks, or silently reverses a previously accepted decision (e.g., swapping databases, altering auth schemes, bypassing established API conventions):
    - **Immediately pause the memdoc update.**
    - **Invoke the `adr-review` workflow** to debate the contradiction:
      1. Present the Socratic challenge highlighting the specific conflicting ADR.
-     2. Generate the Trade-off Matrix comparing old vs. new choices.
-     3. Require explicit justification and formal status transition (`Superseded by [[ADR-xxx]]`) with a migration plan.
-3. **Resume Memdoc Update:** Only apply the architectural documentation and task status changes after the contradiction has been explicitly reconciled and confirmed.
+     2. Generate the Trade-off Matrix comparing old vs. new choices and a Migration/Rollback Plan.
+     3. **Safe Gatekeeping (`Proposed` vs `Accepted`):** Unless the user explicitly authorizes overriding the prior ADR, record the new ADR as `Status: Proposed` (keeping production code compliant with the active ADR until human sign-off). When override is explicitly authorized, transition the old ADR to `Superseded by [[ADR-xxx]]` and record the new ADR as `Accepted`.
+3. **Resume Memdoc Update:** Only apply breaking architectural changes after the contradiction has been explicitly reconciled.
+
+### 6. Deterministic Validation (`validate-vault.py`)
+
+Before completing a memdoc operation, run the deterministic vault linter if available:
+```bash
+python3 ./scripts/validate-vault.py [VAULT_DIR] --fix
+```
+This verifies that all `docs/`, `docs/decisions/`, and `tasks/items/` notes are linked in `Index.md`, all `[[Wikilinks]]` resolve, frontmatter schemas are valid, and `prompts-log.md` stays within its 15-entry rolling window.
 
 ## Gotchas
 
-- **Orphaned Notes:** Never create a new Markdown file in `docs/` or `tasks/items/` without adding a corresponding `[[Wikilink]]` in `Index.md` (and setting its frontmatter `status` for the Kanban base).
-- **Silent Architectural Drift:** Never silently update `docs/` with architecture or tooling changes that contradict past ADRs. Always auto-trigger `/adr-review` when a conflict is detected.
+- **Orphaned Notes:** Never create a new Markdown file in `docs/`, `docs/decisions/`, or `tasks/items/` without adding a corresponding `[[Wikilink]]` in `Index.md` (and setting its frontmatter `status` for the Kanban base).
+- **$O(N)$ Monolithic Log Bloat:** Never dump unbounded full ADR essays into `docs/Decisions.md` or let `tasks/prompts-log.md` grow past 15 entries—shard full ADRs into `docs/decisions/ADR-xxx-slug.md` and archive old prompt logs into `tasks/archive/`.
+- **Silent Architectural Drift:** Never silently update `docs/` or code with architecture/tooling changes that contradict past ADRs. Always auto-trigger `/adr-review` when a conflict is detected.
 - **Mixing Docs and Tasks:** Keep timeless usage guides in `docs/` and chronological prompt/task history in `tasks/`. When a task introduces a permanent feature, update the relevant note in `docs/` as well as updating the task item `status: Done`.
 - **Broken Wikilinks:** Match filenames and Wikilinks exactly, using kebab-case for task items and consistent casing for main documentation notes.

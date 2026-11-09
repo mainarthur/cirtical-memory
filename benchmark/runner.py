@@ -26,6 +26,7 @@ from benchmark.evaluators import evaluate_workspace
 from benchmark.evaluators.token_profiler import (
     profile_task_tokens,
     profile_sprint_tokens,
+    calculate_breakeven_curve,
     TokenProfile,
 )
 from benchmark.scenarios import SCENARIOS, list_scenarios, get_scenario
@@ -132,21 +133,39 @@ def generate_context_pollution_report(
     )
 
     if comparisons:
-        md.append("### Single-Task Token Efficiency & Noise Profile\n")
-        md.append("| Scenario | Condition | Signal Tokens | Noise (Pollution) | Total Tokens | SNR (%) | Context Pollution (%) | ROI (Score/kToken) |")
+        md.append("### Single-Task Token Efficiency & Noise Profile (Seed Project)\n")
+        md.append("| Scenario | Condition | Signal Tokens | Instruction Overhead | Noise / Discovery | Total Tokens | SNR (%) | ROI (Score/kToken) |")
         md.append("| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |")
 
         for comp in comparisons:
             tp_base: TokenProfile = comp.baseline.token_profile
             tp_skills: TokenProfile = comp.with_skills.token_profile
             md.append(
-                f"| `{comp.scenario_id}` | Baseline (No Skills) | {tp_base.signal_tokens} | {tp_base.noise_tokens} | "
-                f"{tp_base.total_tokens} | {tp_base.snr_percent:.1f}% | `{tp_base.pollution_percent:.1f}%` | {tp_base.efficiency_roi:.1f} pts/kTok |"
+                f"| `{comp.scenario_id}` | Baseline (No Skills) | {tp_base.signal_tokens} | 0 | {tp_base.noise_tokens} | "
+                f"{tp_base.total_tokens} | {tp_base.snr_percent:.1f}% | {tp_base.efficiency_roi:.1f} pts/kTok |"
             )
             md.append(
-                f"| | **With Critical Memory** | **{tp_skills.signal_tokens}** | **{tp_skills.noise_tokens}** | "
-                f"**{tp_skills.total_tokens}** | **{tp_skills.snr_percent:.1f}%** | **`{tp_skills.pollution_percent:.1f}%`** | **`{tp_skills.efficiency_roi:.1f} pts/kTok`** |"
+                f"| | **With Critical Memory** | **{tp_skills.signal_tokens}** | **{tp_skills.instruction_overhead_tokens}** | **{tp_skills.noise_tokens}** | "
+                f"**{tp_skills.total_tokens}** | **{tp_skills.snr_percent:.1f}%** | **`{tp_skills.efficiency_roi:.1f} pts/kTok`** |"
             )
+
+    md.append("\n---\n")
+    md.append("## Honest Break-Even Analysis: Upfront Skill Overhead vs. Codebase Scale\n")
+    md.append(
+        "Injecting `AGENTS.md` / `CLAUDE.md` adds an upfront static cost (~400–450 tokens). "
+        "In a tiny 1–2 file repository, Critical Memory costs slightly *more* tokens than baseline. "
+        "Break-even is reached at **~3–4 modules**, after which $O(1)$ MOC navigation + atomic ADR sharding "
+        "saves 50%–85%+ tokens compared to $O(N)$ unindexed scanning:\n"
+    )
+    md.append("| Repo Size (Modules) | Baseline Tokens ($O(N)$ Scan) | Critical Memory Tokens (Incl. Instruction Overhead) | Net Token Delta | Savings (%) | Regime |")
+    md.append("| :---: | :---: | :---: | :---: | :---: | :--- |")
+    for row in calculate_breakeven_curve():
+        delta_str = f"+{row['net_token_delta']}" if row["net_token_delta"] > 0 else f"{row['net_token_delta']}"
+        md.append(
+            f"| **{row['modules']} modules** | {row['baseline_tokens']:,} toks | "
+            f"**{row['critical_memory_tokens']:,} toks** *(+{row['instruction_overhead_tokens']} rules)* | "
+            f"`{delta_str} toks` | `{row['savings_percent']:+.1f}%` | {row['regime']} |"
+        )
 
     md.append("\n---\n")
     md.append("## Compounding Context Pollution Curve (50-Sprint High-Load Scale)\n")
@@ -159,9 +178,13 @@ def generate_context_pollution_report(
         b_prof = profile_sprint_tokens(s, with_skills=False, health_score=max(30.0, 100.0 - s * 1.3))
         s_prof = profile_sprint_tokens(s, with_skills=True, health_score=100.0)
         saved = b_prof.total_tokens - s_prof.total_tokens
+        if saved >= 0:
+            sav_str = f"`+{saved:,} toks saved ({saved/b_prof.total_tokens*100:.0f}%)`"
+        else:
+            sav_str = f"`{saved:,} toks (upfront rules overhead)`"
         md.append(
             f"| **Sprint {s}** | {b_prof.total_tokens:,} toks | `{b_prof.pollution_percent:.1f}%` | "
-            f"**{s_prof.total_tokens:,} toks** | **`{s_prof.pollution_percent:.1f}%`** | `+{saved:,} toks saved ({saved/b_prof.total_tokens*100:.0f}%)` |"
+            f"**{s_prof.total_tokens:,} toks** | **`{s_prof.pollution_percent:.1f}%`** | {sav_str} |"
         )
 
     md.append("\n### Signal-to-Noise Ratio (SNR) Trajectory\n")

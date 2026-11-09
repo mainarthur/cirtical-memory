@@ -1,6 +1,6 @@
 # Continual Growth & High-Load Scalability Report
 
-**Generated:** 2026-11-08 23:36:46  
+**Generated:** 2026-11-09 09:02:21  
 **Total Sprints Evaluated:** `50` cycles  
 **Total Tasks Processed:** `~200` tasks  
 **Total ADRs Maintained:** `15` records  
@@ -14,6 +14,8 @@
 | **Cumulative Architectural Drift** | 100.0% | **0.0%** | `100.0%` drift prevented |
 | **Orphaned / Unlinked Note Ratio** | 8.0% | **0.0%** | `100%` MOC coverage |
 | **Stale Task Leakage Ratio** | 50.0% | **0.0%** | `0` leaked tasks |
+| **Context Pollution Rate (Sprint 50)** | `93.7%` noise | **`11.9%` noise** | `+81.8%` cleaner signal |
+| **Token Efficiency ROI** | 6.0 pts/kTok | **67.7 pts/kTok** | `+61.7x` higher ROI |
 
 ---
 

@@ -83,22 +83,25 @@ def generate_matrix_manifest(
 
     for cfg_key in selected_configs:
         cfg = AGENT_CONFIGS[cfg_key]
-        sandbox_path = base_dir / f"sandbox_{cfg_key}"
-        setup_sandbox(
-            sandbox_path,
-            config_key=cfg_key,
-            with_skills=cfg["with_skills"],
-            persona=cfg["persona"]
-        )
+        cell_root = base_dir / f"sandbox_{cfg_key}"
+        cell_root.mkdir(parents=True, exist_ok=True)
 
         task_list = []
         for s_id in scenarios:
             mod = get_scenario(s_id)
             if mod:
+                scenario_sandbox = cell_root / s_id
+                setup_sandbox(
+                    scenario_sandbox,
+                    config_key=f"{cfg_key}_{s_id}",
+                    with_skills=cfg["with_skills"],
+                    persona=cfg["persona"]
+                )
                 task_list.append({
                     "scenario_id": s_id,
                     "title": getattr(mod, "SCENARIO_TITLE", s_id),
                     "prompt": getattr(mod, "PROMPT", ""),
+                    "scenario_workspace_path": str(scenario_sandbox),
                 })
 
         manifest_cells[cfg_key] = {
@@ -107,7 +110,7 @@ def generate_matrix_manifest(
             "persona": cfg["persona"],
             "with_skills": cfg["with_skills"],
             "system_prompt": cfg["system_prompt"],
-            "workspace_path": str(sandbox_path),
+            "workspace_path": str(cell_root),
             "tasks": task_list,
         }
 
@@ -124,20 +127,21 @@ def generate_matrix_manifest(
 
 
 def execute_matrix_cells(manifest: Dict[str, Any]) -> None:
-    """Executes the scenarios across all matrix cells using the defined scenario protocol."""
+    """Executes the scenarios across all isolated per-scenario matrix sandboxes."""
     cells = manifest.get("cells", {})
     for cell_key, cell_info in cells.items():
-        ws = Path(cell_info["workspace_path"])
+        default_ws = Path(cell_info["workspace_path"])
         with_skills = cell_info["with_skills"]
         for task in cell_info.get("tasks", []):
             s_id = task["scenario_id"]
+            ws = Path(task.get("scenario_workspace_path", default_ws))
             mod = get_scenario(s_id)
             if mod and hasattr(mod, "run_scenario"):
                 mod.run_scenario(ws, with_skills=with_skills)
 
 
 def evaluate_matrix_manifest(manifest: Dict[str, Any]) -> Dict[str, Any]:
-    """Evaluates all matrix cells and computes 2x2 comparison metrics."""
+    """Evaluates all isolated matrix cells and computes 2x2 comparison metrics."""
     results = {
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "cells": {},
@@ -146,7 +150,7 @@ def evaluate_matrix_manifest(manifest: Dict[str, Any]) -> Dict[str, Any]:
 
     cells = manifest.get("cells", {})
     for cell_key, cell_info in cells.items():
-        ws = Path(cell_info["workspace_path"])
+        default_ws = Path(cell_info["workspace_path"])
         with_skills = cell_info["with_skills"]
 
         scenario_evals = []
@@ -155,8 +159,11 @@ def evaluate_matrix_manifest(manifest: Dict[str, Any]) -> Dict[str, Any]:
 
         for task in cell_info.get("tasks", []):
             s_id = task["scenario_id"]
+            ws = Path(task.get("scenario_workspace_path", default_ws))
+            transcript_str = task.get("transcript_path")
+            t_path = Path(transcript_str) if transcript_str else None
             res = evaluate_workspace(ws, s_id, cell_info["name"])
-            profile = profile_task_tokens(ws, s_id, with_skills, res.overall_score)
+            profile = profile_task_tokens(ws, s_id, with_skills, res.overall_score, transcript_path=t_path)
             res.token_profile = profile
 
             scenario_evals.append({
@@ -166,10 +173,12 @@ def evaluate_matrix_manifest(manifest: Dict[str, Any]) -> Dict[str, Any]:
                 "tokens": {
                     "signal_tokens": profile.signal_tokens,
                     "noise_tokens": profile.noise_tokens,
+                    "instruction_overhead_tokens": profile.instruction_overhead_tokens,
                     "total_tokens": profile.total_tokens,
                     "snr_percent": profile.snr_percent,
                     "pollution_percent": profile.pollution_percent,
                     "efficiency_roi": profile.efficiency_roi,
+                    "source": profile.source,
                 }
             })
             cell_scores.append(res.overall_score)

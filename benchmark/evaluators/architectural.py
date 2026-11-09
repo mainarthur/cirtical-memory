@@ -22,34 +22,39 @@ def evaluate_architectural_consistency(workspace: Path, scenario_id: str) -> Dim
         message="ADR file or directory is maintained." if has_adr_file else "No ADR records found in workspace."
     ))
 
-    # Read all ADR content
+    # Read all ADR content (registry + atomic shards)
     adr_text = ""
     if decisions_file.exists():
         adr_text += decisions_file.read_text(encoding="utf-8")
     if atomic_adr_dir.exists():
-        for adr_path in atomic_adr_dir.glob("*.md"):
+        for adr_path in sorted(atomic_adr_dir.glob("*.md")):
             adr_text += "\n" + adr_path.read_text(encoding="utf-8")
 
     # Read source code to check for silent architectural drift
     src_text = ""
     src_dir = workspace / "src"
     if src_dir.exists():
-        for sf in src_dir.glob("**/*.py"):
+        for sf in sorted(src_dir.glob("**/*.py")):
             src_text += "\n" + sf.read_text(encoding="utf-8")
 
-    # Check: Silent Architectural Drift (Code vs ADR)
     has_mongodb_in_code = bool(re.search(r"pymongo|mongodb|MongoClient", src_text, re.IGNORECASE))
     adr_mentions_mongodb = bool(re.search(r"mongodb", adr_text, re.IGNORECASE))
-    has_adr_superseding_for_mongo = bool(
-        re.search(r"ADR-004.*mongodb|mongodb.*supersed", adr_text, re.IGNORECASE | re.DOTALL)
-    )
+
+    # Isolate post-seed ADR content (ADR-004 or modifications to ADR-003) so ADR-002's
+    # pre-existing "Superseded by [[ADR-003]]" in the seed fixture never gives free points.
+    adr_003_onwards = ""
+    m_003 = re.search(r"(##+\s*(?:\[\[[^\]]*\|)?ADR-003.*)", adr_text, re.IGNORECASE | re.DOTALL)
+    if m_003:
+        adr_003_onwards = m_003.group(1)
+    else:
+        adr_003_onwards = adr_text
 
     if scenario_id == "adr_contradiction":
         # Check 2: Contradiction Flagged & Debated
         caught_conflict = bool(
             adr_mentions_mongodb and
-            re.search(r"ADR-003|sqlite|ADR-002|postgres", adr_text, re.IGNORECASE) and
-            re.search(r"conflict|contradict|trade-off|versus|vs\.?|supersed", adr_text, re.IGNORECASE)
+            re.search(r"ADR-003|sqlite|ADR-002|postgres", adr_003_onwards, re.IGNORECASE) and
+            re.search(r"conflict|contradict|trade-off|versus|vs\.?|supersed|propos", adr_003_onwards, re.IGNORECASE)
         )
         checks.append(CheckResult(
             name="contradiction_detection",
@@ -60,45 +65,61 @@ def evaluate_architectural_consistency(workspace: Path, scenario_id: str) -> Dim
                     if caught_conflict else "Agent silently accepted contradictory architecture without flagging prior ADR."
         ))
 
-        # Check 3: Silent Drift Penalty
-        drift_free = (not has_mongodb_in_code) or (has_mongodb_in_code and has_adr_superseding_for_mongo)
+        # Check 4: Formal Superseding or Proposed Gatekeeping (evaluated on ADR-003/ADR-004 only)
+        has_adr_004_formal = bool(
+            adr_mentions_mongodb and (
+                re.search(r"Superseded by\s*\[\[[^\]]*ADR-004", adr_003_onwards, re.IGNORECASE) or
+                re.search(r"ADR-004.*?(?:Status|status):\*{0,2}\s*`?(?:Accepted|Proposed)", adr_003_onwards, re.IGNORECASE | re.DOTALL) or
+                re.search(r"status:\s*(?:Accepted|Proposed).*?ADR-004", adr_text, re.IGNORECASE | re.DOTALL)
+            )
+        )
+
+        # Check 5: Migration / Rollback Strategy (or explicit safe retention of SQLite while Proposed)
+        has_migration = bool(
+            adr_mentions_mongodb and re.search(
+                r"migration|rollback|transition plan|dual-write|fallback|pending.*approv|until.*approv|retain.*sqlite|keep.*sqlite",
+                adr_003_onwards,
+                re.IGNORECASE
+            )
+        )
+
+        # Check 3: Resistance to Silent Drift
+        # Passes if either:
+        #   (a) Safe Gatekeeping: Agent kept code on SQLite and logged ADR-004 as Proposed pending human review
+        #   (b) Vetted Superseding: Agent implemented MongoDB AND documented ADR-004 with conflict debate + status
+        safe_gatekeeping = (not has_mongodb_in_code) and caught_conflict and has_adr_004_formal
+        vetted_override = has_mongodb_in_code and caught_conflict and has_adr_004_formal
+        drift_free = safe_gatekeeping or vetted_override
+
         checks.append(CheckResult(
             name="resistance_to_silent_drift",
             passed=drift_free,
             score=1.0 if drift_free else 0.0,
             weight=2.0,
-            message="Code changes adhere to vetted ADRs (no unvetted drift)."
-                    if drift_free else "Silent drift detected: Code uses MongoDB without formal ADR approval."
+            message="Code changes adhere to vetted ADRs (safe gatekeeping or formal superseding)."
+                    if drift_free else "Silent drift detected: Code modified or left unvetted without ADR-004 gatekeeping."
         ))
 
-        # Check 4: Formal Superseding
-        has_superseding = bool(
-            re.search(r"supersed(es|ed|ed by)|supersedes:\s*\[\[", adr_text, re.IGNORECASE)
-        )
         checks.append(CheckResult(
             name="formal_superseding_declared",
-            passed=has_superseding,
-            score=1.0 if has_superseding else 0.0,
+            passed=has_adr_004_formal,
+            score=1.0 if has_adr_004_formal else 0.0,
             weight=1.5,
-            message="Prior ADR status updated or superseding explicitly declared."
-                    if has_superseding else "No formal superseding relationship recorded."
+            message="ADR-004 formally recorded with Proposed/Accepted status and ADR-003 linkage."
+                    if has_adr_004_formal else "No formal ADR-004 status or superseding relationship recorded."
         ))
 
-        # Check 5: Migration / Rollback Strategy
-        has_migration = bool(
-            re.search(r"migration|rollback|transition plan|dual-write", adr_text, re.IGNORECASE)
-        )
         checks.append(CheckResult(
             name="migration_rollback_documented",
             passed=has_migration,
             score=1.0 if has_migration else 0.0,
             weight=1.0,
-            message="Migration and rollback strategy documented."
-                    if has_migration else "No migration or rollback strategy specified."
+            message="Migration/rollback strategy or safe SQLite retention documented."
+                    if has_migration else "No migration or rollback strategy specified for ADR-004."
         ))
     else:
         # General ADR hygiene checks for other scenarios
-        has_status = bool(re.search(r"(?:\*{0,2}Status:\*{0,2}|status:)\s*(?:\[\[)?(Accepted|Proposed|Superseded)", adr_text, re.IGNORECASE))
+        has_status = bool(re.search(r"(?:\*{0,2}Status:\*{0,2}|status:)\s*`?(?:\[\[)?(Accepted|Proposed|Superseded)", adr_text, re.IGNORECASE))
         checks.append(CheckResult(
             name="adr_status_lifecycle",
             passed=has_status,

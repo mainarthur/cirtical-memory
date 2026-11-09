@@ -27,8 +27,9 @@ def evaluate_task_hygiene(workspace: Path, scenario_id: str) -> DimensionScore:
     has_prompts_log = prompts_log.exists()
     prompts_text = prompts_log.read_text(encoding="utf-8") if has_prompts_log else ""
 
-    # Check if a new entry was appended for the current execution (2026-11-08)
-    has_recent_run_entry = bool(re.search(r"##\s+\[2026-11-08\]", prompts_text))
+    # Check if a new entry was appended after the seed baseline entry (2026-11-01)
+    log_dates = re.findall(r"^##\s+\[(\d{4}-\d{2}-\d{2})\]", prompts_text, flags=re.MULTILINE)
+    has_recent_run_entry = any(d > "2026-11-01" for d in log_dates) or len(log_dates) > 1
 
     checks.append(CheckResult(
         name="prompt_audit_log_traceability",

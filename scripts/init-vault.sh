@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# init-vault.sh: Bootstrap a memdoc (memory + documentation) vault in a project directory.
+# init-vault.sh: Bootstrap a Critical Memory (memdoc) vault in a project directory.
 # Usage: ./init-vault.sh [TARGET_DIR] [PROJECT_NAME]
 # Default TARGET_DIR: ./docs/obsidian
 # Default PROJECT_NAME: Current directory basename
@@ -16,13 +16,14 @@ CURRENT_DIR_NAME="$(basename "$(pwd)")"
 PROJECT_NAME="${2:-$CURRENT_DIR_NAME}"
 TODAY="$(date +%Y-%m-%d)"
 
-echo "Initializing Memdoc Vault..."
+echo "Initializing Critical Memory Vault..."
 echo "  Target: ${TARGET_DIR}"
 echo "  Project: ${PROJECT_NAME}"
 echo "  Date: ${TODAY}"
 
-mkdir -p "${TARGET_DIR}/docs"
+mkdir -p "${TARGET_DIR}/docs/decisions"
 mkdir -p "${TARGET_DIR}/tasks/items"
+mkdir -p "${TARGET_DIR}/tasks/archive"
 
 render_template() {
   local src="$1"
@@ -42,6 +43,7 @@ render_template "${TEMPLATES_DIR}/docs/Architecture.md" "${TARGET_DIR}/docs/Arch
 render_template "${TEMPLATES_DIR}/docs/Setup-and-Usage.md" "${TARGET_DIR}/docs/Setup-and-Usage.md"
 render_template "${TEMPLATES_DIR}/docs/Decisions.md" "${TARGET_DIR}/docs/Decisions.md"
 render_template "${TEMPLATES_DIR}/docs/ADR-template.md" "${TARGET_DIR}/docs/ADR-template.md"
+render_template "${TEMPLATES_DIR}/docs/decisions/ADR-001-initial-architecture.md" "${TARGET_DIR}/docs/decisions/ADR-001-initial-architecture.md"
 render_template "${TEMPLATES_DIR}/tasks/Kanban-Board.base" "${TARGET_DIR}/tasks/Kanban-Board.base"
 render_template "${TEMPLATES_DIR}/tasks/prompts-log.md" "${TARGET_DIR}/tasks/prompts-log.md"
 render_template "${TEMPLATES_DIR}/tasks/items/task-template.md" "${TARGET_DIR}/tasks/items/task-template.md"

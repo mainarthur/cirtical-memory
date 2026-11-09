@@ -1,6 +1,6 @@
 # Context Pollution Analysis: Usage vs. Win
 
-**Generated:** 2026-11-09 00:01:41  
+**Generated:** 2026-11-09 09:02:21  
 **Evaluation Paradigm:** Token Efficiency, Signal-to-Noise Ratio (SNR), and Return on Investment (ROI)
 
 ---
@@ -9,16 +9,34 @@
 
 A common concern with agentic documentation systems is **Token Overhead**—does maintaining vaults, Map of Content files, and prompt logs consume too much context window capacity? This analysis proves the opposite: **Critical Memory reduces context pollution by 75–85%** by shifting context ingestion from greedy, unindexed scanning to targeted $O(1)$ atomic retrieval.
 
-### Single-Task Token Efficiency & Noise Profile
+### Single-Task Token Efficiency & Noise Profile (Seed Project)
 
-| Scenario | Condition | Signal Tokens | Noise (Pollution) | Total Tokens | SNR (%) | Context Pollution (%) | ROI (Score/kToken) |
+| Scenario | Condition | Signal Tokens | Instruction Overhead | Noise / Discovery | Total Tokens | SNR (%) | ROI (Score/kToken) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| `adr_contradiction` | Baseline (No Skills) | 396 | 1404 | 1800 | 22.0% | `78.0%` | 39.8 pts/kTok |
-| | **With Critical Memory** | **468** | **56** | **524** | **89.3%** | **`10.7%`** | **`190.8 pts/kTok`** |
-| `context_retrieval` | Baseline (No Skills) | 396 | 1404 | 1800 | 22.0% | `78.0%` | 45.9 pts/kTok |
-| | **With Critical Memory** | **156** | **18** | **174** | **89.7%** | **`10.3%`** | **`574.7 pts/kTok`** |
-| `task_lifecycle` | Baseline (No Skills) | 396 | 1404 | 1800 | 22.0% | `78.0%` | 46.6 pts/kTok |
-| | **With Critical Memory** | **148** | **17** | **165** | **89.7%** | **`10.3%`** | **`606.1 pts/kTok`** |
+| `adr_contradiction` | Baseline (No Skills) | 610 | 0 | 1570 | 2180 | 28.0% | 26.4 pts/kTok |
+| | **With Critical Memory** | **761** | **888** | **60** | **1709** | **92.7%** | **`58.5 pts/kTok`** |
+| `context_retrieval` | Baseline (No Skills) | 595 | 0 | 1531 | 2126 | 28.0% | 34.5 pts/kTok |
+| | **With Critical Memory** | **260** | **888** | **20** | **1168** | **92.9%** | **`85.6 pts/kTok`** |
+| `task_lifecycle` | Baseline (No Skills) | 607 | 0 | 1564 | 2171 | 28.0% | 31.9 pts/kTok |
+| | **With Critical Memory** | **420** | **888** | **33** | **1341** | **92.7%** | **`74.6 pts/kTok`** |
+
+---
+
+## Honest Break-Even Analysis: Upfront Skill Overhead vs. Codebase Scale
+
+Injecting `AGENTS.md` / `CLAUDE.md` adds an upfront static cost (~400–450 tokens). In a tiny 1–2 file repository, Critical Memory costs slightly *more* tokens than baseline. Break-even is reached at **~3–4 modules**, after which $O(1)$ MOC navigation + atomic ADR sharding saves 50%–85%+ tokens compared to $O(N)$ unindexed scanning:
+
+| Repo Size (Modules) | Baseline Tokens ($O(N)$ Scan) | Critical Memory Tokens (Incl. Instruction Overhead) | Net Token Delta | Savings (%) | Regime |
+| :---: | :---: | :---: | :---: | :---: | :--- |
+| **1 modules** | 500 toks | **1,332 toks** *(+888 rules)* | `+832 toks` | `-166.4%` | Upfront Overhead (Net Cost) |
+| **2 modules** | 780 toks | **1,336 toks** *(+888 rules)* | `+556 toks` | `-71.3%` | Upfront Overhead (Net Cost) |
+| **3 modules** | 1,060 toks | **1,340 toks** *(+888 rules)* | `+280 toks` | `-26.4%` | Upfront Overhead (Net Cost) |
+| **4 modules** | 1,340 toks | **1,344 toks** *(+888 rules)* | `+4 toks` | `-0.3%` | Upfront Overhead (Net Cost) |
+| **5 modules** | 1,620 toks | **1,348 toks** *(+888 rules)* | `-272 toks` | `+16.8%` | O(1) Savings (Net Win) |
+| **10 modules** | 3,020 toks | **1,368 toks** *(+888 rules)* | `-1652 toks` | `+54.7%` | O(1) Savings (Net Win) |
+| **20 modules** | 5,820 toks | **1,408 toks** *(+888 rules)* | `-4412 toks` | `+75.8%` | O(1) Savings (Net Win) |
+| **35 modules** | 10,020 toks | **1,468 toks** *(+888 rules)* | `-8552 toks` | `+85.3%` | O(1) Savings (Net Win) |
+| **50 modules** | 14,220 toks | **1,508 toks** *(+888 rules)* | `-12712 toks` | `+89.4%` | O(1) Savings (Net Win) |
 
 ---
 
@@ -28,13 +46,13 @@ As projects grow in size, how does token consumption and noise scale?
 
 | Sprint Tier | Baseline Tokens (Linear O(N)) | Baseline Pollution (%) | Critical Memory Tokens (Flat O(1)) | Critical Memory Pollution (%) | Token Savings |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Sprint 1** | 1,142 toks | `77.9%` | **483 toks** | **`12.6%`** | `+659 toks saved (58%)` |
-| **Sprint 5** | 1,510 toks | `82.8%` | **495 toks** | **`13.1%`** | `+1,015 toks saved (67%)` |
-| **Sprint 10** | 1,970 toks | `86.3%` | **510 toks** | **`13.7%`** | `+1,460 toks saved (74%)` |
-| **Sprint 20** | 2,890 toks | `90.0%` | **540 toks** | **`14.8%`** | `+2,350 toks saved (81%)` |
-| **Sprint 30** | 3,810 toks | `91.9%` | **570 toks** | **`15.8%`** | `+3,240 toks saved (85%)` |
-| **Sprint 40** | 4,730 toks | `93.0%` | **590 toks** | **`15.3%`** | `+4,140 toks saved (88%)` |
-| **Sprint 50** | 5,650 toks | `93.8%` | **610 toks** | **`14.8%`** | `+5,040 toks saved (89%)` |
+| **Sprint 1** | 797 toks | `68.4%` | **1,356 toks** | **`9.8%`** | `-559 toks (upfront rules overhead)` |
+| **Sprint 5** | 1,185 toks | `78.1%` | **1,368 toks** | **`10.4%`** | `-183 toks (upfront rules overhead)` |
+| **Sprint 10** | 1,670 toks | `83.8%` | **1,383 toks** | **`11.1%`** | `+287 toks saved (17%)` |
+| **Sprint 20** | 2,640 toks | `89.0%` | **1,413 toks** | **`12.4%`** | `+1,227 toks saved (46%)` |
+| **Sprint 30** | 3,610 toks | `91.4%` | **1,438 toks** | **`12.7%`** | `+2,172 toks saved (60%)` |
+| **Sprint 40** | 4,580 toks | `92.8%` | **1,458 toks** | **`12.3%`** | `+3,122 toks saved (68%)` |
+| **Sprint 50** | 5,550 toks | `93.7%` | **1,478 toks** | **`11.9%`** | `+4,072 toks saved (73%)` |
 
 ### Signal-to-Noise Ratio (SNR) Trajectory
 

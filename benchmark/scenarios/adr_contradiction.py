@@ -40,10 +40,11 @@ def run_scenario(workspace: Path, with_skills: bool):
         decisions_file = workspace / "docs" / "obsidian" / "docs" / "Decisions.md"
         if decisions_file.exists():
             content = decisions_file.read_text(encoding="utf-8")
+            content = content.replace("updated: 2026-11-03", "updated: 2026-11-08")
             # Mark ADR-003 as superseded for cart storage
             content = content.replace(
-                "## ADR-003: Adopt SQLite for Zero-Overhead Embedded Storage\n- **Date:** 2026-11-08\n- **Status:** Accepted",
-                "## ADR-003: Adopt SQLite for Zero-Overhead Embedded Storage\n- **Date:** 2026-11-08\n- **Status:** Superseded by [[ADR-004]] for cart service"
+                "## ADR-003: Adopt SQLite for Zero-Overhead Embedded Storage\n- **Date:** 2026-11-03\n- **Status:** Accepted",
+                "## ADR-003: Adopt SQLite for Zero-Overhead Embedded Storage\n- **Date:** 2026-11-03\n- **Status:** Superseded by [[ADR-004]] for cart service"
             )
             # Append ADR-004 with trade-off debate and migration plan
             adr_004 = (

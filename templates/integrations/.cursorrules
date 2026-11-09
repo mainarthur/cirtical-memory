@@ -3,7 +3,8 @@
 This repository uses Critical Memory for living documentation and ADR management.
 
 - **Vault:** Check `docs/obsidian/` (or `.memdoc/`) for project context and architecture.
-- **Index:** Always update `docs/obsidian/Index.md` with wikilinks when notes are created or modified.
-- **Tasks:** Maintain task items in `tasks/items/` and log execution in `tasks/prompts-log.md`.
-- **Decisions:** Check `docs/Decisions.md` before altering technical foundations. If a proposed change conflicts with existing decisions, highlight the contradiction, present a trade-off matrix, and record supersession.
+- **Index ($O(1)$ Hub):** Always update `docs/obsidian/Index.md` with wikilinks when notes in `docs/`, `docs/decisions/`, or `tasks/items/` are created or modified.
+- **Tasks & Rolling Log:** Maintain task items in `tasks/items/` and log execution in `tasks/prompts-log.md` (capped at 15 entries; older logs archived in `tasks/archive/`).
+- **Decisions & Gatekeeping:** Check `docs/Decisions.md` and `docs/decisions/` before altering technical foundations. If a proposed change conflicts with an accepted ADR, highlight the contradiction, present a trade-off matrix + rollback plan, and record the new ADR as `Proposed` (keeping code compliant with the active ADR until approved) or `Accepted` (`Superseded by [[ADR-xxx]]`) if override is explicitly authorized.
+- **Validation:** Run `./scripts/validate-vault.py` to verify zero broken links or unindexed orphans.
 

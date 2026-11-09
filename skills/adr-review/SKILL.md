@@ -79,32 +79,25 @@ Synthesize the debate into a side-by-side comparison matrix comparing the existi
 
 ### Step 4: Phase 3 — Gatekeeper & Resolution Criteria
 
-Enforce strict gatekeeping rules before the ADR can transition from `Proposed` to `Accepted`:
+Enforce strict gatekeeping rules when an architectural proposal contradicts an accepted ADR:
 
-1. **Explicit Justification:** The author must clearly explain why past assumptions are no longer valid.
-2. **Formal Superseding:** If the proposal replaces or invalidates an existing ADR, the old ADR's status MUST be marked as `Superseded by [[ADR-yyy]]`. The new ADR must list `supersedes: [[ADR-xxx]]`.
-3. **Migration & Rollback Plan:** The ADR must include a concrete rollout and fallback plan detailing:
+1. **Explicit Justification:** Clearly document why past assumptions are no longer valid.
+2. **Migration & Rollback Plan:** Every conflicting ADR (whether `Proposed` or `Accepted`) MUST include a concrete rollout and fallback plan detailing:
    - Data or code migration steps.
-   - Compatibility bridge during transition.
+   - Compatibility bridge (e.g., dual-write or fallback adapter) during transition.
    - Criteria for aborting or rolling back.
-
-If these criteria are unmet, keep the ADR status as `Proposed` or `Under Review` and highlight blocking items.
+3. **Default Safe Gatekeeping (`Proposed`) vs. Authorized Superseding (`Accepted`):**
+   - **Without Explicit Human Override Authorization:** Record the new ADR with `Status: Proposed` (referencing the conflicting ADR via `supersedes: "[[ADR-xxx]]"`), include the full Trade-off Matrix and Migration/Rollback Plan, and **keep production code compliant with the active ADR** (or behind an opt-in adapter) until a human approves the transition.
+   - **With Explicit Override Authorization:** Transition the new ADR to `Status: Accepted`, mark the replaced ADR's status as `Superseded by [[ADR-yyy]]`, and execute the migration plan.
 
 ---
 
-### Step 5: Draft for Confirmation then Apply
+### Step 5: Write Atomic ADR & Update Registry
 
-Once the debate resolves and consensus is reached:
-
-1. **Present the Diff:** Show the exact Markdown changes to the user for confirmation:
-   - The new ADR content (using the template format).
-   - The status change in existing superseded ADRs (`Status: Superseded by [[ADR-yyy]]`).
-   - The updated link in `Index.md`.
-2. **Apply to Vault upon Approval:**
-   - Append to `docs/Decisions.md` (or write to `docs/decisions/ADR-xxx-<slug>.md`).
-   - Update the superseded ADR note or section.
-   - Update `Index.md` under `## General & Usage Documentation`.
-   - Log the review outcome in `tasks/prompts-log.md`.
+1. **Write Atomic Shard (`docs/decisions/ADR-xxx-<slug>.md`):** Write the full ADR (including context, trade-off matrix, consequences, and migration/rollback strategy) to an atomic file in `docs/decisions/`.
+2. **Update Compact Registry (`docs/Decisions.md`):** Add or update the 1-line summary row in the `docs/Decisions.md` registry table (and update any superseded ADR status).
+3. **Update Central Index (`Index.md`):** Link `[[docs/decisions/ADR-xxx-<slug>|ADR-xxx: <Title>]]` under `## Architecture Decision Records (ADRs)` in `Index.md`.
+4. **Audit & Validate:** Log the review outcome in `tasks/prompts-log.md` and run `python3 ./scripts/validate-vault.py` (if present) to verify link integrity.
 
 ---
 

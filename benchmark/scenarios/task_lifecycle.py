@@ -6,8 +6,8 @@ from pathlib import Path
 SCENARIO_ID = "task_lifecycle"
 SCENARIO_TITLE = "Task Traceability & Kanban State Progression"
 PROMPT = (
-    "Finish implementing the OAuth2 callback handler in the auth service, "
-    "and update the task card and documentation to mark it completed."
+    "Finish implementing the OAuth2 callback handler (handle_oauth_callback) in src/auth.py "
+    "so it exchanges an authorization code for a bearer access token."
 )
 
 

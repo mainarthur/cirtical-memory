@@ -16,11 +16,13 @@ docs/obsidian/
 ├── docs/                    # System architecture & technical decisions
 │   ├── Architecture.md      # Component design and data flow
 │   ├── Setup-and-Usage.md   # Developer onboarding and run instructions
-│   ├── Decisions.md         # Architecture Decision Records (ADRs)
-│   └── ADR-template.md      # Template for individual atomic ADRs
+│   ├── Decisions.md         # Compact ADR Registry table (O(1) lookup)
+│   ├── ADR-template.md      # Template for individual atomic ADRs
+│   └── decisions/           # Atomic ADR shards (ADR-xxx-slug.md)
 └── tasks/                   # Tasks and execution history
     ├── Kanban-Board.base    # Obsidian Base Kanban view
-    ├── prompts-log.md       # Audit trail of AI prompts and changes
+    ├── prompts-log.md       # Rolling window audit trail (max 15 recent entries)
+    ├── archive/             # Historical prompt log archives (YYYY-MM-prompts.md)
     └── items/               # Individual task notes (YYYY-MM-DD-slug.md)
 ```
 
@@ -29,10 +31,10 @@ docs/obsidian/
 ## 2. Core Operational Rules for AI Assistants
 
 1. **Always Update `Index.md` (Map of Content):**
-   Whenever a new note is added or renamed in `docs/` or `tasks/items/`, add a corresponding `[[Wikilink]]` under the appropriate heading in `Index.md`.
+   Whenever a new note is added or renamed in `docs/`, `docs/decisions/`, or `tasks/items/`, add a corresponding `[[Wikilink]]` under the appropriate heading in `Index.md`.
 
-2. **Log Prompts & Completed Tasks:**
-   - Log significant user requests, modifications, and outcomes chronologically in `tasks/prompts-log.md`.
+2. **Log Prompts & Completed Tasks (With Rolling Window Cap):**
+   - Log significant user requests, modifications, and outcomes chronologically in `tasks/prompts-log.md` (keep at most 15 entries; rotate older entries to `tasks/archive/YYYY-MM-prompts.md`).
    - For distinct feature tasks, create an atomic note in `tasks/items/YYYY-MM-DD-<slug>.md` with YAML frontmatter:
      ```yaml
      ---
@@ -45,9 +47,10 @@ docs/obsidian/
      ---
      ```
 
-3. **Use Obsidian Conventions:**
+3. **Use Obsidian Conventions & Deterministic Validation:**
    - Use `[[Note-Name]]` or `[[subfolder/Note-Name|Display Title]]` for internal linking.
-   - Use standard YAML frontmatter for properties.
+   - Use standard YAML frontmatter for properties (`updated: YYYY-MM-DD`).
+   - Before completing a task, run `./scripts/validate-vault.py` (if present) to verify zero broken links, zero unindexed orphans, and valid frontmatter.
 
 ---
 
@@ -55,9 +58,9 @@ docs/obsidian/
 
 When proposing new architectural choices, introducing major libraries, or altering existing system designs:
 
-1. **Cross-Check Existing Decisions:** Read `docs/Decisions.md` (and `docs/decisions/` if present) before making structural changes.
+1. **Cross-Check Existing Decisions:** Read `docs/Decisions.md` (and relevant shards in `docs/decisions/`) before making structural changes.
 2. **Never Silently Overwrite Past Decisions:** If a proposed change contradicts an accepted ADR:
-   - **Pause and flag the contradiction** to the user.
-   - **Present a Trade-off Matrix:** Compare the existing decision with the proposed direction across performance, complexity, migration cost, and operational risks.
-   - **Enforce Superseding:** If accepted, update the previous ADR's status to `Superseded by [[ADR-xxx]]`, and record the new ADR with `supersedes: [[ADR-xxx]]` and a concrete migration/rollback plan.
+   - **Challenge & Debate:** Flag the specific conflicting ADR and present a structured **Trade-off Matrix** comparing existing vs. proposed choices across scale, complexity, migration cost, and reversibility, plus a **Migration & Rollback Plan**.
+   - **Default Safe Gatekeeping (`Proposed`):** Unless the user explicitly authorizes overriding the prior ADR, record the new ADR as `Status: Proposed` (in `docs/decisions/ADR-xxx-<slug>.md` and `docs/Decisions.md`) and keep production code compliant with the active ADR (or behind an opt-in adapter) pending human sign-off.
+   - **Authorized Superseding (`Accepted`):** When overriding is explicitly authorized, mark the prior ADR's status as `Superseded by [[ADR-xxx]]` and record the new ADR as `Accepted` with `supersedes: [[ADR-xxx]]` and the migration/rollback plan.
 

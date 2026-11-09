@@ -1,0 +1,116 @@
+filters:
+  and:
+    - '!file.inFolder("templates")'
+    - '!file.inFolder("Meta/Templates")'
+    - '!file.name.contains("Template")'
+    - '!file.name.contains("template")'
+    - file.ext == "md"
+    - file.hasProperty("status")
+    - status != "living"
+    - or:
+        - file.inFolder("tasks")
+        - category == "task"
+        - type == "task"
+        - file.hasTag("task")
+formulas:
+  prio: if(priority=="🧊 Icebox", 1, if(priority=="🌱 Low Priority", 2, if(priority=="⚡️ Medium Priority",3,if(priority=="🔥 High Priority",4, if(priority=="🚨 Critical / Blocker",5,0)))))
+  days: if(type=='task' || category=='task' || created, created.relative(), "")
+properties:
+  formula.prio:
+    displayName: prio-sorting
+  formula.days:
+    displayName: Age
+views:
+  - type: kanban
+    name: Main
+    filters:
+      and:
+        - file.hasProperty("status")
+    groupBy:
+      property: status
+      direction: ASC
+    order:
+      - priority
+      - epic
+      - formula.days
+      - updated
+    sort:
+      - property: formula.prio
+        direction: DESC
+      - property: created
+        direction: DESC
+    columnOrders:
+      note.status:
+        - Epic (Vision)
+        - Backlog (Ideas)
+        - Up next (Pull)
+        - Doing (In progress)
+        - Done
+        - Archive
+    columnColors:
+      note.status:
+        Epic (Vision): red
+        Backlog (Ideas): yellow
+        Up next (Pull): green
+        Doing (In progress): blue
+        Done: pink
+        Archive: gray
+    groupByProperty: note.status
+    wrapPropertyValues: false
+    markdownGroupTitles: true
+    hideUncategorized: true
+    quickAddTemplate: tasks/items/task-template
+    imageAspectRatio: 0.6
+  - type: kanban
+    name: Active Sprint
+    filters:
+      and:
+        - file.hasProperty("status")
+        - or:
+            - status == "Up next (Pull)"
+            - status == "Doing (In progress)"
+    groupBy:
+      property: status
+      direction: ASC
+    order:
+      - priority
+      - epic
+      - formula.days
+      - updated
+    sort:
+      - property: formula.prio
+        direction: DESC
+      - property: created
+        direction: DESC
+    columnOrders:
+      note.status:
+        - Up next (Pull)
+        - Doing (In progress)
+    columnColors:
+      note.status:
+        Up next (Pull): green
+        Doing (In progress): blue
+    groupByProperty: note.status
+    wrapPropertyValues: false
+    markdownGroupTitles: true
+    hideUncategorized: true
+    quickAddTemplate: tasks/items/task-template
+  - type: table
+    name: All Tasks
+    filters:
+      and:
+        - file.hasProperty("status")
+    order:
+      - file.link
+      - status
+      - priority
+      - epic
+      - formula.prio
+      - created
+      - formula.days
+      - updated
+    sort:
+      - property: formula.prio
+        direction: DESC
+      - property: created
+        direction: DESC

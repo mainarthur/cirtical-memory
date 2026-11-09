@@ -1,65 +1,71 @@
 {
-  "timestamp": "2026-11-09 00:40:49",
+  "timestamp": "2026-11-09 09:02:21",
   "cells": {
     "gemini_baseline": {
       "name": "Gemini Baseline (No Skills)",
       "persona": "gemini",
       "with_skills": false,
-      "average_score": 94.3,
-      "average_tokens": 1800,
+      "average_score": 66.7,
+      "average_tokens": 2159,
       "scenarios": [
         {
           "scenario_id": "adr_contradiction",
-          "overall_score": 82.8,
+          "overall_score": 57.6,
           "dimensions": {
-            "architectural": 31.2,
+            "architectural": 12.5,
             "traceability": 100.0,
-            "task_hygiene": 100.0,
-            "freshness": 100.0
+            "task_hygiene": 55.6,
+            "freshness": 62.5
           },
           "tokens": {
-            "signal_tokens": 396,
-            "noise_tokens": 1404,
-            "total_tokens": 1800,
-            "snr_percent": 22.0,
-            "pollution_percent": 78.0,
-            "efficiency_roi": 46.0
+            "signal_tokens": 610,
+            "noise_tokens": 1570,
+            "instruction_overhead_tokens": 0,
+            "total_tokens": 2180,
+            "snr_percent": 28.0,
+            "pollution_percent": 72.0,
+            "efficiency_roi": 26.4,
+            "source": "static_discovery"
           }
         },
         {
           "scenario_id": "context_retrieval",
-          "overall_score": 100.0,
+          "overall_score": 73.3,
           "dimensions": {
             "architectural": 100.0,
-            "traceability": 100.0,
-            "task_hygiene": 100.0,
-            "freshness": 100.0
+            "traceability": 75.0,
+            "task_hygiene": 55.6,
+            "freshness": 62.5
           },
           "tokens": {
-            "signal_tokens": 396,
-            "noise_tokens": 1404,
-            "total_tokens": 1800,
-            "snr_percent": 22.0,
-            "pollution_percent": 78.0,
-            "efficiency_roi": 55.6
+            "signal_tokens": 595,
+            "noise_tokens": 1531,
+            "instruction_overhead_tokens": 0,
+            "total_tokens": 2126,
+            "snr_percent": 28.0,
+            "pollution_percent": 72.0,
+            "efficiency_roi": 34.5,
+            "source": "static_discovery"
           }
         },
         {
           "scenario_id": "task_lifecycle",
-          "overall_score": 100.0,
+          "overall_score": 69.3,
           "dimensions": {
             "architectural": 100.0,
             "traceability": 100.0,
-            "task_hygiene": 100.0,
-            "freshness": 100.0
+            "task_hygiene": 35.7,
+            "freshness": 41.7
           },
           "tokens": {
-            "signal_tokens": 396,
-            "noise_tokens": 1404,
-            "total_tokens": 1800,
-            "snr_percent": 22.0,
-            "pollution_percent": 78.0,
-            "efficiency_roi": 55.6
+            "signal_tokens": 607,
+            "noise_tokens": 1564,
+            "instruction_overhead_tokens": 0,
+            "total_tokens": 2171,
+            "snr_percent": 28.0,
+            "pollution_percent": 72.0,
+            "efficiency_roi": 31.9,
+            "source": "static_discovery"
           }
         }
       ]
@@ -69,7 +75,7 @@
       "persona": "gemini",
       "with_skills": true,
       "average_score": 100.0,
-      "average_tokens": 714,
+      "average_tokens": 1406,
       "scenarios": [
         {
           "scenario_id": "adr_contradiction",
@@ -81,12 +87,14 @@
             "freshness": 100.0
           },
           "tokens": {
-            "signal_tokens": 970,
-            "noise_tokens": 116,
-            "total_tokens": 1086,
-            "snr_percent": 89.3,
-            "pollution_percent": 10.7,
-            "efficiency_roi": 92.1
+            "signal_tokens": 761,
+            "noise_tokens": 60,
+            "instruction_overhead_tokens": 888,
+            "total_tokens": 1709,
+            "snr_percent": 92.7,
+            "pollution_percent": 7.3,
+            "efficiency_roi": 58.5,
+            "source": "static_discovery"
           }
         },
         {
@@ -99,12 +107,14 @@
             "freshness": 100.0
           },
           "tokens": {
-            "signal_tokens": 642,
-            "noise_tokens": 77,
-            "total_tokens": 719,
-            "snr_percent": 89.3,
-            "pollution_percent": 10.7,
-            "efficiency_roi": 139.1
+            "signal_tokens": 260,
+            "noise_tokens": 20,
+            "instruction_overhead_tokens": 888,
+            "total_tokens": 1168,
+            "snr_percent": 92.9,
+            "pollution_percent": 7.1,
+            "efficiency_roi": 85.6,
+            "source": "static_discovery"
           }
         },
         {
@@ -117,85 +127,93 @@
             "freshness": 100.0
           },
           "tokens": {
-            "signal_tokens": 301,
-            "noise_tokens": 36,
-            "total_tokens": 337,
-            "snr_percent": 89.3,
-            "pollution_percent": 10.7,
-            "efficiency_roi": 296.7
+            "signal_tokens": 420,
+            "noise_tokens": 33,
+            "instruction_overhead_tokens": 888,
+            "total_tokens": 1341,
+            "snr_percent": 92.7,
+            "pollution_percent": 7.3,
+            "efficiency_roi": 74.6,
+            "source": "static_discovery"
           }
         }
       ]
     },
     "claude_baseline": {
-      "name": "Claude Sonnet 5.5 Baseline (No Skills)",
+      "name": "Claude Persona Baseline (No Skills)",
       "persona": "claude",
       "with_skills": false,
-      "average_score": 99.0,
-      "average_tokens": 1800,
+      "average_score": 66.7,
+      "average_tokens": 2159,
       "scenarios": [
         {
           "scenario_id": "adr_contradiction",
-          "overall_score": 96.9,
+          "overall_score": 57.6,
           "dimensions": {
-            "architectural": 87.5,
+            "architectural": 12.5,
             "traceability": 100.0,
-            "task_hygiene": 100.0,
-            "freshness": 100.0
+            "task_hygiene": 55.6,
+            "freshness": 62.5
           },
           "tokens": {
-            "signal_tokens": 396,
-            "noise_tokens": 1404,
-            "total_tokens": 1800,
-            "snr_percent": 22.0,
-            "pollution_percent": 78.0,
-            "efficiency_roi": 53.8
+            "signal_tokens": 610,
+            "noise_tokens": 1570,
+            "instruction_overhead_tokens": 0,
+            "total_tokens": 2180,
+            "snr_percent": 28.0,
+            "pollution_percent": 72.0,
+            "efficiency_roi": 26.4,
+            "source": "static_discovery"
           }
         },
         {
           "scenario_id": "context_retrieval",
-          "overall_score": 100.0,
+          "overall_score": 73.3,
           "dimensions": {
             "architectural": 100.0,
-            "traceability": 100.0,
-            "task_hygiene": 100.0,
-            "freshness": 100.0
+            "traceability": 75.0,
+            "task_hygiene": 55.6,
+            "freshness": 62.5
           },
           "tokens": {
-            "signal_tokens": 396,
-            "noise_tokens": 1404,
-            "total_tokens": 1800,
-            "snr_percent": 22.0,
-            "pollution_percent": 78.0,
-            "efficiency_roi": 55.6
+            "signal_tokens": 595,
+            "noise_tokens": 1531,
+            "instruction_overhead_tokens": 0,
+            "total_tokens": 2126,
+            "snr_percent": 28.0,
+            "pollution_percent": 72.0,
+            "efficiency_roi": 34.5,
+            "source": "static_discovery"
           }
         },
         {
           "scenario_id": "task_lifecycle",
-          "overall_score": 100.0,
+          "overall_score": 69.3,
           "dimensions": {
             "architectural": 100.0,
             "traceability": 100.0,
-            "task_hygiene": 100.0,
-            "freshness": 100.0
+            "task_hygiene": 35.7,
+            "freshness": 41.7
           },
           "tokens": {
-            "signal_tokens": 396,
-            "noise_tokens": 1404,
-            "total_tokens": 1800,
-            "snr_percent": 22.0,
-            "pollution_percent": 78.0,
-            "efficiency_roi": 55.6
+            "signal_tokens": 607,
+            "noise_tokens": 1564,
+            "instruction_overhead_tokens": 0,
+            "total_tokens": 2171,
+            "snr_percent": 28.0,
+            "pollution_percent": 72.0,
+            "efficiency_roi": 31.9,
+            "source": "static_discovery"
           }
         }
       ]
     },
     "claude_skills": {
-      "name": "Claude Sonnet 5.5 With Critical Memory",
+      "name": "Claude Persona With Critical Memory",
       "persona": "claude",
       "with_skills": true,
       "average_score": 100.0,
-      "average_tokens": 450,
+      "average_tokens": 1671,
       "scenarios": [
         {
           "scenario_id": "adr_contradiction",
@@ -207,12 +225,14 @@
             "freshness": 100.0
           },
           "tokens": {
-            "signal_tokens": 719,
-            "noise_tokens": 86,
-            "total_tokens": 805,
-            "snr_percent": 89.3,
-            "pollution_percent": 10.7,
-            "efficiency_roi": 124.2
+            "signal_tokens": 761,
+            "noise_tokens": 60,
+            "instruction_overhead_tokens": 1153,
+            "total_tokens": 1974,
+            "snr_percent": 92.7,
+            "pollution_percent": 7.3,
+            "efficiency_roi": 50.7,
+            "source": "static_discovery"
           }
         },
         {
@@ -225,12 +245,14 @@
             "freshness": 100.0
           },
           "tokens": {
-            "signal_tokens": 256,
-            "noise_tokens": 30,
-            "total_tokens": 286,
-            "snr_percent": 89.5,
-            "pollution_percent": 10.5,
-            "efficiency_roi": 349.7
+            "signal_tokens": 260,
+            "noise_tokens": 20,
+            "instruction_overhead_tokens": 1153,
+            "total_tokens": 1433,
+            "snr_percent": 92.9,
+            "pollution_percent": 7.1,
+            "efficiency_roi": 69.8,
+            "source": "static_discovery"
           }
         },
         {
@@ -243,19 +265,21 @@
             "freshness": 100.0
           },
           "tokens": {
-            "signal_tokens": 233,
-            "noise_tokens": 28,
-            "total_tokens": 261,
-            "snr_percent": 89.3,
-            "pollution_percent": 10.7,
-            "efficiency_roi": 383.1
+            "signal_tokens": 420,
+            "noise_tokens": 33,
+            "instruction_overhead_tokens": 1153,
+            "total_tokens": 1606,
+            "snr_percent": 92.7,
+            "pollution_percent": 7.3,
+            "efficiency_roi": 62.3,
+            "source": "static_discovery"
           }
         }
       ]
     }
   },
   "comparison_matrix": {
-    "gemini_delta": 5.7,
-    "claude_delta": 1.0
+    "gemini_delta": 33.3,
+    "claude_delta": 33.3
   }
 }

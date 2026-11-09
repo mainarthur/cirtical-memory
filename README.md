@@ -29,7 +29,7 @@ Critical Memory bundles two specialized skills:
 
 ---
 
-## Vault Directory Layout
+## Vault Directory Layout ($O(1)$ Sharded Architecture)
 
 By default, the vault is maintained in `docs/obsidian/` or `.memdoc/`:
 
@@ -40,47 +40,57 @@ docs/obsidian/
 ├── docs/                    # Living system documentation
 │   ├── Architecture.md      # System design, data flow, component layout
 │   ├── Setup-and-Usage.md   # Developer onboarding and run instructions
-│   ├── Decisions.md         # Architecture Decision Records (ADRs log)
-│   └── ADR-template.md      # Template for individual atomic ADR notes
+│   ├── Decisions.md         # Compact 1-line-per-ADR Registry table (O(1) lookup)
+│   ├── ADR-template.md      # Template for individual atomic ADR notes
+│   └── decisions/           # Atomic ADR shards (ADR-xxx-slug.md)
+│       └── ADR-001-initial-architecture.md
 └── tasks/                   # Tasks and chronological prompt execution
     ├── Kanban-Board.base    # Obsidian Base Kanban view
-    ├── prompts-log.md       # Audit trail of AI agent prompts and changes
+    ├── prompts-log.md       # Rolling 15-entry audit trail of AI prompts & changes
+    ├── archive/             # Automatically rotated historical prompt logs
     └── items/               # Individual atomic task notes
         └── YYYY-MM-DD-slug.md
 ```
 
 ---
 
-## Quickstart (Any Project)
+## Quickstart & Deterministic Validation
 
 Bootstrap a fresh Critical Memory vault in seconds:
 
 ```bash
-# In your target project root:
+# 1. Initialize vault in your target project root:
 /path/to/critical-memory/scripts/init-vault.sh [TARGET_DIR] [PROJECT_NAME]
 
-# Example:
-./scripts/init-vault.sh docs/obsidian MyApp
+# 2. Validate vault integrity (MOC links, [[Wikilinks]], YAML frontmatter, log window):
+python3 /path/to/critical-memory/scripts/validate-vault.py [TARGET_DIR] --strict
+# Or auto-fix orphaned notes & rotate logs >15 entries:
+python3 ./scripts/validate-vault.py docs/obsidian --fix
+
+# 3. Optional: Install Git pre-commit hook to enforce vault integrity on commit:
+./scripts/install-hooks.sh
 ```
 
 This creates the full directory structure, seed notes, Kanban board, and a root `AGENTS.md` file.
 
 ---
 
-## Benchmark Results: Value Delivered vs. Token Cost (ROI)
+## Benchmark Results: Value Delivered vs. Honest Token Cost (ROI)
+
+> 📄 **See [`REVIEW.md`](REVIEW.md)** for the full critical audit of the repository, including the honest break-even math for upfront instruction overhead (`AGENTS.md`), dual-tier ADR gatekeeping (`Proposed` vs. `Accepted`), and live subagent runs.
 
 Critical Memory includes an automated evaluation harness in [`benchmark/`](benchmark/) to measure agent performance across both isolated single tasks and longitudinal 50-sprint high-load scaling.
 
-### 1. Single-Task Evaluation (Value vs. Token Overhead)
+### 1. Single-Task Evaluation (Honest Accounting Incl. `+888` Instruction Overhead)
 
-A common concern with agent memory systems is token cost. The benchmark shows that **Critical Memory reduces context token consumption by 71%–91%** while delivering superior task accuracy:
+Injecting `AGENTS.md` / `CLAUDE.md` adds an upfront static cost (~400–888 tokens). On a tiny 1–3 file script, Critical Memory costs slightly more tokens; **break-even is reached at ~4 modules**, after which $O(1)$ MOC lookup saves **22%–89% tokens** while preventing architectural drift:
 
-| Scenario | Baseline (Without Skills) | With Critical Memory | Accuracy Win | Token Reduction | Signal-to-Noise Ratio (SNR) |
+| Scenario | Baseline (Without Skills) | With Critical Memory (Incl. Rules Overhead) | Accuracy Win | Net Token Reduction | Discovery SNR |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **ADR Contradiction Attack** | 71.7% (`1,800` toks, 78% noise) | **100.0%** (`524` toks, 11% noise) | **`+28.3%`** | **`-71%` tokens** | `89.3%` clean signal |
-| **Context Retrieval & Onboarding** | 82.7% (`1,800` toks, 78% noise) | **100.0%** (`174` toks, 10% noise) | **`+17.3%`** | **`-90%` tokens** | `89.7%` clean signal |
-| **Task State & Kanban Progression** | 83.9% (`1,800` toks, 78% noise) | **100.0%** (`165` toks, 10% noise) | **`+16.1%`** | **`-91%` tokens** | `89.7%` clean signal |
-| **OVERALL COMPOSITE** | 79.4% (`1,800` toks) | **100.0%** (`288` avg toks) | **`+20.6%`** | **`-84.0%` tokens** | **`+67.5%` higher SNR** |
+| **ADR Contradiction Attack** | 57.6% (`2,180` toks, 72% noise) | **100.0%** (`1,709` toks, incl. `888` rules) | **`+42.4%`** | **`-21.6%` tokens** | `92.7%` clean signal |
+| **Context Retrieval & Onboarding** | 73.3% (`2,126` toks, 72% noise) | **100.0%** (`1,168` toks, incl. `888` rules) | **`+26.7%`** | **`-45.1%` tokens** | `92.9%` clean signal |
+| **Task State & Kanban Progression** | 69.3% (`2,171` toks, 72% noise) | **100.0%** (`1,341` toks, incl. `888` rules) | **`+30.7%`** | **`-38.2%` tokens** | `92.7%` clean signal |
+| **OVERALL COMPOSITE** | 66.7% (`2,159` avg toks) | **100.0%** (`1,406` avg toks) | **`+33.3%`** | **`-34.9%` tokens** | **`+64.8%` higher SNR** |
 
 ---
 
@@ -94,17 +104,18 @@ Stress-tested across 50 development sprints processing ~200 tasks and 12 conflic
 | **Historical Context Recall** | 65.5% (decaying) | **100.0% (constant)** | **`+34.5%` context retention** |
 | **Cumulative Architectural Drift** | 100.0% (12/12 unvetted) | **0.0% (all vetted & superseded)** | **`100%` drift prevention** |
 | **Stale Task Leakage** | 50.0% (100 unclosed tasks) | **0.0% (all closed in Done)** | **`0` leaked tasks** |
-| **Context Pollution (Sprint 50)** | `93.8%` noise (5,650 toks) | **`14.8%` noise (610 toks)** | **`89.2%` token savings** |
+| **Context Pollution (Sprint 50)** | `93.7%` noise (`5,550` toks) | **`10.9%` discovery noise (`1,528` toks)** | **`72.5%` token savings** |
 
 ---
 
 ### 3. Economic ROI: Cost of Maintaining Memory vs. Cost of Noise
 
-Without structured memory, agents must greedily scan raw files, logs, and commit histories, filling 78%–94% of the context window with useless noise. By using the `Index.md` Map of Content to retrieve targeted atomic notes ($O(1)$ discovery), Critical Memory achieves:
+Without structured memory, agents must greedily scan raw files, logs, and commit histories, filling 72%–94% of the context window with useless noise. By using the `Index.md` Map of Content + atomic ADR shards (`docs/decisions/`) + 15-entry rolling logs (`tasks/prompts-log.md`), Critical Memory achieves:
 
-- **Per 1,000 Developer Prompts:**
+- **Break-Even Point:** **~4 modules** (below 4 modules, upfront `AGENTS.md` rules add net tokens; above 4 modules, $O(1)$ lookup wins).
+- **At 20–50 Modules (Per 1,000 Developer Prompts):**
   - **Baseline:** Consumes **~5,200,000 tokens** (mostly noise, resulting in 12 unvetted architectural drift events).
-  - **With Critical Memory:** Consumes **~550,000 tokens** (**89.4% token cost reduction**, zero architectural drift).
+  - **With Critical Memory:** Consumes **~1,400,000 tokens** (**73%+ net token reduction** including upfront rules, zero architectural drift).
 
 To run the benchmark suite locally:
 ```bash
@@ -119,10 +130,11 @@ To run the benchmark suite locally:
 ```
 
 Detailed reports:
+- [Full Repository Critical Review & Cons Remediation](REVIEW.md)
 - [Full Benchmark Report](benchmark/reports/benchmark-report.md)
 - [Live Subagent 2x2 Matrix Report](benchmark/reports/live-matrix-report.md)
 - [Continual Growth Scalability Report](benchmark/reports/continual-growth-report.md)
-- [Context Pollution & Token ROI Analysis](benchmark/reports/context-pollution-analysis.md)
+- [Context Pollution & Honest Break-Even Analysis](benchmark/reports/context-pollution-analysis.md)
 
 ---
 

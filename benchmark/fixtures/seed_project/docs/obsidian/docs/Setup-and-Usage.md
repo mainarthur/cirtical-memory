@@ -1,6 +1,6 @@
 ---
 tags: [docs, setup, usage]
-updated: 2026-11-08
+updated: 2026-11-03
 ---
 # Setup and Usage Guide
 
